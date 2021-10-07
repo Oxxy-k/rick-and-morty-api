@@ -1,42 +1,59 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Button } from "@chakra-ui/react";
 import { ApiContext } from "../../../contex/api";
 import EpisodesItem from "../../EpisodesItem";
-
-const moc = {
-  air_date: "December 2, 2013",
-  created: "2017-11-10T12:56:33.798Z",
-  episode: "S01E01",
-  id: 1,
-  name: "Pilot",
-};
+import Text from "../../shared/Text";
+import Spinner from "../../Spinner";
 
 function EpisodesPage() {
   const { getAllEpisodes } = useContext(ApiContext);
+  const [isFirstLoading, setIsFirstLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [episodes, setEpisodes] = useState([]);
-  console.log(
-    "🚀 ~ file: index.jsx ~ line 9 ~ EpisodesPage ~ episodes",
-    episodes
-  );
   const [page, setPage] = useState(1);
 
   useEffect(() => {
     (async () => {
-      const episodes = await getAllEpisodes(page);
-      setEpisodes(episodes.results);
+      if (!episodes.length) {
+        setIsFirstLoading(true);
+      }
+      setIsLoading(true);
+      const data = await getAllEpisodes(page);
+      setEpisodes([...episodes, ...data.results]);
+      setIsLoading(false);
+      if (episodes.length) {
+        return;
+      }
+      setIsFirstLoading(false);
     })();
   }, [page]);
 
   return (
-    <Box>
-      <Grid p="20px" templateColumns="repeat(2, 2fr)" gap={3}>
-        {!!episodes.length &&
-          episodes.map(({ id, name, episode, air_date }) => (
-            <GridItem key={id}>
-              <EpisodesItem name={name} episode={episode} date={air_date} />
-            </GridItem>
-          ))}
-      </Grid>
+    <Box p="20px">
+      {isFirstLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <Grid templateColumns="repeat(2, 2fr)" gap={3}>
+            {!!episodes.length &&
+              episodes.map(({ id, name, episode, air_date }) => (
+                <GridItem key={id}>
+                  <EpisodesItem name={name} episode={episode} date={air_date} />
+                </GridItem>
+              ))}
+          </Grid>
+          <Box>
+            <Button
+              variant="outline"
+              isLoading={isLoading}
+              mt="20px"
+              onClick={() => setPage(page + 1)}
+            >
+              <Text messageId="button.more" />
+            </Button>
+          </Box>
+        </>
+      )}
     </Box>
   );
 }

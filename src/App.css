@@ -1,4 +1,5 @@
 .app {
+  color: gainsboro;
   background-attachment: fixed;
   background: url("./img/background-img.png") no-repeat center center;
   background-size: cover;
