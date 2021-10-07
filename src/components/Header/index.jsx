@@ -1,12 +1,10 @@
 import React from "react";
 import Text from "../shared/Text";
-import { Button, Box, Image, Flex } from "@chakra-ui/react";
+import { Image, Flex } from "@chakra-ui/react";
 import LocaleDropdown from "./LocaleDropdown";
-// import { useRouter } from "next/router";
+import { Link, withRouter } from "react-router-dom";
 
 const Header = () => {
-//   const { push, pathname } = useRouter();
-
   return (
     <Flex
       position="sticky"
@@ -19,15 +17,15 @@ const Header = () => {
         <Flex justifyContent="space-between" alignItems="center">
           <Image boxSize="40px" src="header.png" alt="Rick and Morty"></Image>
           <Flex justifyContent="space-between" alignItems="center">
-            <Box as="button" px="15px">
-              <Text color="gray" messageId="header.episodes" />
-            </Box>
-            <Box as="button" px="15px">
-              <Text color="gray" messageId="header.characters" />
-            </Box>
-            <Box as="button" px="15px">
-              <Text color="gray" messageId="header.locations" />
-            </Box>
+            <Link to="/episodes">
+              <Text color="gray" messageId="header.episodes" px="15px" />
+            </Link>
+            <Link to="/characters">
+              <Text color="gray" messageId="header.characters" px="15px" />
+            </Link>
+            <Link to="/locations">
+              <Text color="gray" messageId="header.locations" px="15px" />
+            </Link>
           </Flex>
         </Flex>
         <LocaleDropdown />
@@ -36,4 +34,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default withRouter(Header);

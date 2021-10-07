@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import { ApiProvider } from "./contex/api";
 import { ChakraProvider } from "@chakra-ui/react";
 import { LngProvider } from "./contex/locale";
 import "./index.css";
@@ -9,9 +11,13 @@ import reportWebVitals from "./reportWebVitals";
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider>
-      <LngProvider>
-        <App />
-      </LngProvider>
+      <Router>
+        <ApiProvider>
+          <LngProvider>
+            <App />
+          </LngProvider>
+        </ApiProvider>
+      </Router>
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById("root")

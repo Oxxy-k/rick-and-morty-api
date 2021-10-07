@@ -9,7 +9,11 @@ export function Text({ messageId, messageValues, ...props }) {
     props.children
   );
 
-  return <ChakraText {...props}>{child}</ChakraText>;
+  return (
+    <ChakraText color="gray" {...props}>
+      {child}
+    </ChakraText>
+  );
 }
 
 export function ErrorText(props) {

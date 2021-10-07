@@ -33,6 +33,7 @@ export function LngProvider({ children }) {
   const [locale, changeLocale] = useState(defaultLanguage);
   const [messages, setMessages] = useState(locales[defaultLanguage]);
 
+
   // Loads previously selected language from localStorage or navigator
   useEffect(() => {
     const lng = getDefaultLanguage();
