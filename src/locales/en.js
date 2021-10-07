@@ -1,9 +1,9 @@
-import languages from './languages/en'
-
-
 const messages = {
-  ...languages,
- 
-}
+  "header.episodes": "Episodes",
+  "header.characters": "Characters",
+  "header.locations": "Locations",
+  "languages.en": "English",
+  "languages.ru": "Russian",
+};
 
-export default messages
+export default messages;

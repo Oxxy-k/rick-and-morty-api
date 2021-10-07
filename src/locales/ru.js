@@ -1,7 +1,9 @@
-import languages from "./languages/ru";
-
 const messages = {
-  ...languages,
+  'header.episodes': 'Эпизоды',
+  'header.characters': 'Персонажи',
+  'header.locations': 'Локации',
+  'languages.en': 'Английский',
+  'languages.ru': 'Русский',
 };
 
 export default messages;
