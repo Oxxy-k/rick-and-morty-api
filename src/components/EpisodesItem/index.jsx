@@ -8,7 +8,7 @@ const EpisodesItem = ({ name, episode, characters, date }) => {
       p="20px"
       w="400px"
       borderRadius="12px"
-      backgroundColor="black"
+      backgroundColor="rgba(0, 0, 0, 0.9)"
       boxShadow="dark-lg"
     >
       <Flex>

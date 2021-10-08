@@ -10,7 +10,7 @@ export function Text({ messageId, messageValues, ...props }) {
   );
 
   return (
-    <ChakraText color="gray" {...props}>
+    <ChakraText color="gray" fontSize="12px" line-height="14px" {...props}>
       {child}
     </ChakraText>
   );

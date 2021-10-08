@@ -1,8 +1,74 @@
-import React from "react";
-import { Box } from "@chakra-ui/react";
+import React, { useContext, useState, useEffect } from "react";
+import { Box, Grid, GridItem, Button } from "@chakra-ui/react";
+import { ApiContext } from "../../../contex/api";
+import CharacterItem from "../../CharacterItem";
+import Text from "../../shared/Text";
+import Spinner from "../../Spinner";
 
 function CharactersPage() {
-  return <Box>Characters Page</Box>;
+  const { getAllCharacter } = useContext(ApiContext);
+  const [isFirstLoading, setIsFirstLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [characters, setCharacters] = useState([]);
+  console.log(
+    "🚀 ~ file: index.jsx ~ line 13 ~ CharactersPage ~ characters",
+    characters
+  );
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    (async () => {
+      if (!characters.length) {
+        setIsFirstLoading(true);
+      }
+      setIsLoading(true);
+      const data = await getAllCharacter(page);
+      setCharacters([...characters, ...data.results]);
+      setIsLoading(false);
+      if (characters.length) {
+        return;
+      }
+      setIsFirstLoading(false);
+    })();
+  }, [page]);
+
+  return (
+    <Box p="20px">
+      {isFirstLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <Grid templateColumns="repeat(2, 2fr)" gap={3}>
+            {!!characters.length &&
+              characters.map(
+                ({ id, name, status, species, gender, location, image }) => (
+                  <GridItem key={id}>
+                    <CharacterItem
+                      name={name}
+                      status={status}
+                      species={species}
+                      gender={gender}
+                      location={location.name}
+                      image={image}
+                    />
+                  </GridItem>
+                )
+              )}
+          </Grid>
+          <Box>
+            <Button
+              variant="outline"
+              isLoading={isLoading}
+              mt="20px"
+              onClick={() => setPage(page + 1)}
+            >
+              <Text messageId="button.more" color="white" />
+            </Button>
+          </Box>
+        </>
+      )}
+    </Box>
+  );
 }
 
 export default CharactersPage;
