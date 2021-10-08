@@ -1,17 +1,16 @@
 import React from "react";
+import { Image, Flex } from "@chakra-ui/react";
 
 import "./Spinner.css";
 
-const Spinner = () => {
+const Spinner = ({ props }) => {
   return (
-    <div class="loadingio-spinner-ripple-qwdxkwcl0ho">
-      <div class="ldio-rcwgefh80m">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    </div>
+    <Flex alignItems="center" justifyContent="center" h="90vh">
+      <Image
+        className="spinner"
+        src="https://mystickermania.com/cdn/stickers/rick-and-morty/sticker_2060-512x512.png"
+      />
+    </Flex>
   );
 };
 

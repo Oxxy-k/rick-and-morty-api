@@ -1,8 +1,9 @@
 import React from "react";
-import Text from "../shared/Text";
-import { Image, Flex } from "@chakra-ui/react";
-import LocaleDropdown from "./LocaleDropdown";
 import { Link, withRouter } from "react-router-dom";
+import { Flex } from "@chakra-ui/react";
+import Text from "../shared/Text";
+import LocaleDropdown from "./LocaleDropdown";
+import Logo from "../Logo";
 
 const Header = () => {
   return (
@@ -10,12 +11,12 @@ const Header = () => {
       position="sticky"
       top="0"
       backgroundColor="black"
-      height="40px"
+      height="30px"
       alignItems="center"
     >
       <Flex alignItems="center" justifyContent="space-between" px="5%" w="100%">
         <Flex justifyContent="space-between" alignItems="center">
-          <Image boxSize="40px" src="header.png" alt="Rick and Morty"></Image>
+          <Logo />
           <Flex justifyContent="space-between" alignItems="center">
             <Link to="/episodes">
               <Text color="gray" messageId="header.episodes" px="15px" />
