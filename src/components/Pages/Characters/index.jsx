@@ -7,13 +7,10 @@ import Spinner from "../../Spinner";
 
 function CharactersPage() {
   const { getAllCharacter } = useContext(ApiContext);
+  const [isNextPageExist, setIsNextPageExist] = useState(true);
   const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [characters, setCharacters] = useState([]);
-  console.log(
-    "🚀 ~ file: index.jsx ~ line 13 ~ CharactersPage ~ characters",
-    characters
-  );
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -23,6 +20,7 @@ function CharactersPage() {
       }
       setIsLoading(true);
       const data = await getAllCharacter(page);
+      setIsNextPageExist(!!data.info.next);
       setCharacters([...characters, ...data.results]);
       setIsLoading(false);
       if (characters.length) {
@@ -55,16 +53,18 @@ function CharactersPage() {
                 )
               )}
           </Grid>
-          <Box>
-            <Button
-              variant="outline"
-              isLoading={isLoading}
-              mt="20px"
-              onClick={() => setPage(page + 1)}
-            >
-              <Text messageId="button.more" color="white" />
-            </Button>
-          </Box>
+          {isNextPageExist && (
+            <Box>
+              <Button
+                variant="outline"
+                isLoading={isLoading}
+                mt="20px"
+                onClick={() => setPage(page + 1)}
+              >
+                <Text messageId="button.more" color="white" />
+              </Button>
+            </Box>
+          )}
         </>
       )}
     </Box>

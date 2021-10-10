@@ -7,6 +7,7 @@ import Spinner from "../../Spinner";
 
 function EpisodesPage() {
   const { getAllEpisodes } = useContext(ApiContext);
+  const [isNextPageExist, setIsNextPageExist] = useState(true);
   const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [episodes, setEpisodes] = useState([]);
@@ -19,6 +20,7 @@ function EpisodesPage() {
       }
       setIsLoading(true);
       const data = await getAllEpisodes(page);
+      setIsNextPageExist(!!data.info.next);
       setEpisodes([...episodes, ...data.results]);
       setIsLoading(false);
       if (episodes.length) {
@@ -42,16 +44,18 @@ function EpisodesPage() {
                 </GridItem>
               ))}
           </Grid>
-          <Box>
-            <Button
-              variant="outline"
-              isLoading={isLoading}
-              mt="20px"
-              onClick={() => setPage(page + 1)}
-            >
-              <Text messageId="button.more" />
-            </Button>
-          </Box>
+          {isNextPageExist && (
+            <Box>
+              <Button
+                variant="outline"
+                isLoading={isLoading}
+                mt="20px"
+                onClick={() => setPage(page + 1)}
+              >
+                <Text messageId="button.more" color="white" />
+              </Button>
+            </Box>
+          )}
         </>
       )}
     </Box>

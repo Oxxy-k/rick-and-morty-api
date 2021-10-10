@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Flex, Image } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
+import { toUpperCaseFirst } from "../../helpers/toUpperCaseFirst";
 import Text from "../shared/Text";
 
 const colors = { alive: "#2aa101", dead: "#c70000", unknown: "#ffffff" };
@@ -10,13 +11,7 @@ const generateColorStatus = (status) => {
   return colors[status.toLowerCase()];
 };
 
-const toUpperCaseFirst = (str) => {
-  if (!str) return str;
-
-  return str[0].toUpperCase() + str.slice(1);
-};
-
-const EpisodesItem = ({ name, status, species, gender, location, image }) => {
+const CharacterItem = ({ name, status, species, gender, location, image }) => {
   return (
     <Flex
       p="20px"
@@ -53,4 +48,4 @@ const EpisodesItem = ({ name, status, species, gender, location, image }) => {
   );
 };
 
-export default EpisodesItem;
+export default CharacterItem;

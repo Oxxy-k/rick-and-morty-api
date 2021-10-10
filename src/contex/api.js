@@ -23,7 +23,7 @@ export function ApiProvider({ children }) {
   const getCharacterByParams = async (params) =>
     await getResource(`https://rickandmortyapi.com/api/character/?${params}`);
 
-  const getAllLocation = async (page) =>
+  const getAllLocations = async (page) =>
     await getResource(`https://rickandmortyapi.com/api/location/?page=${page}`);
 
   const getLocationById = async (id) =>
@@ -47,7 +47,7 @@ export function ApiProvider({ children }) {
         getAllCharacter,
         getCharacterById,
         getCharacterByParams,
-        getAllLocation,
+        getAllLocations,
         getLocationById,
         getLocationByParams,
         getAllEpisodes,

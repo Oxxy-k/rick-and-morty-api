@@ -12,6 +12,10 @@ const messages = {
   "characterItem.lastKnowLocation": "Последняя локация:",
   "characterItem.gender": "Пол:",
 
+  "locationItem.name": "Название локации:",
+  "locationItem.type": "Тип:",
+  "locationItem.dimension": "Измерение:",
+
   "button.more": "Ещё",
 };
 

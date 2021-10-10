@@ -37,7 +37,7 @@ Text.propTypes = {
 
 Text.defaultProps = {
   fontSize: "12px",
-  lineHeight: "14px",
+  lineHeight: "150%",
   color: "gray",
 };
 

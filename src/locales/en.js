@@ -12,6 +12,10 @@ const messages = {
   "characterItem.lastKnowLocation": "Last known location:",
   "characterItem.gender": "Gender:",
 
+  "locationItem.name": "Name:",
+  "locationItem.type": "Type:",
+  "locationItem.dimension": "Dimension:",
+
   "button.more": "More",
 };
 
