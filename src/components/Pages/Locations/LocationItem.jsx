@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Flex } from "@chakra-ui/react";
-import { toUpperCaseFirst } from "../../helpers/toUpperCaseFirst";
-import Text from "../shared/Text";
+import { toUpperCaseFirst } from "../../../helpers/toUpperCaseFirst";
+import Text from "../../shared/Text";
 
 const EpisodesItem = ({ name, type, dimension }) => {
   return (
@@ -13,19 +13,19 @@ const EpisodesItem = ({ name, type, dimension }) => {
       boxShadow="dark-lg"
     >
       <Flex>
-        <Text messageId="locationItem.name" />
+        <Text messageId="location.name" />
         <Text ml="5px" wordWrap="break-word" color="white">
           {name}
         </Text>
       </Flex>
       <Flex>
-        <Text messageId="locationItem.type" />
+        <Text messageId="location.type" />
         <Text ml="5px" wordWrap="break-word" color="white">
           {type}
         </Text>
       </Flex>
       <Flex>
-        <Text messageId="locationItem.dimension" />
+        <Text messageId="location.dimension" />
         <Text ml="5px" wordWrap="break-word" color="white">
           {toUpperCaseFirst(dimension)}
         </Text>

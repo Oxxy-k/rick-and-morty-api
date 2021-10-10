@@ -5,18 +5,23 @@ const messages = {
   "languages.en": "English",
   "languages.ru": "Russian",
 
-  "episodeItem.name": "Episode name:",
-  "episodeItem.episode": "Episode:",
-  "episodeItem.date": "Date:",
+  "episode.name": "Episode name:",
+  "episode.episode": "Episode:",
+  "episode.date": "Date:",
 
-  "characterItem.lastKnowLocation": "Last known location:",
-  "characterItem.gender": "Gender:",
+  "character.lastKnowLocation": "Last known location:",
+  "character.gender": "Gender:",
+  "character.status": "Status:",
+  "character.species": "Species:",
+  "character.type": "Type:",
+  "character.originLocation": "Origin location:",
 
-  "locationItem.name": "Name:",
-  "locationItem.type": "Type:",
-  "locationItem.dimension": "Dimension:",
+  "location.name": "Name:",
+  "location.type": "Type:",
+  "location.dimension": "Dimension:",
 
   "button.more": "More",
+  "button.close": "Close",
 };
 
 export default messages;

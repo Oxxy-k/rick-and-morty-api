@@ -2,8 +2,8 @@ import React from "react";
 import { Box, Flex, Image } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
-import { toUpperCaseFirst } from "../../helpers/toUpperCaseFirst";
-import Text from "../shared/Text";
+import { toUpperCaseFirst } from "../../../helpers/toUpperCaseFirst";
+import Text from "../../shared/Text";
 
 const colors = { alive: "#2aa101", dead: "#c70000", unknown: "#ffffff" };
 
@@ -11,9 +11,23 @@ const generateColorStatus = (status) => {
   return colors[status.toLowerCase()];
 };
 
-const CharacterItem = ({ name, status, species, gender, location, image }) => {
+const CharacterItem = ({
+  name,
+  status,
+  species,
+  gender,
+  location,
+  image,
+  onClick,
+}) => {
   return (
     <Flex
+      onClick={() => onClick()}
+      cursor="pointer"
+      _hover={{
+        bgColor: "black",
+        boxShadow: "0 0 10px rgb(0, 217, 255)",
+      }}
       p="20px"
       w="400px"
       h="150px"
@@ -36,12 +50,12 @@ const CharacterItem = ({ name, status, species, gender, location, image }) => {
           )} - ${species}`}</Text>
         </Flex>
         <Flex alignItems="center" mt="5px">
-          <Text messageId="characterItem.gender" />
+          <Text messageId="character.gender" />
           <Text color="white" ml="5px">
             {toUpperCaseFirst(gender)}
           </Text>
         </Flex>
-        <Text messageId="characterItem.lastKnowLocation" mt="5px" />
+        <Text messageId="character.lastKnowLocation" mt="5px" />
         <Text color="white">{location}</Text>
       </Box>
     </Flex>

@@ -5,18 +5,23 @@ const messages = {
   "languages.en": "Английский",
   "languages.ru": "Русский",
 
-  "episodeItem.name": "Название серии:",
-  "episodeItem.episode": "Серия:",
-  "episodeItem.date": "Дата:",
+  "episode.name": "Название серии:",
+  "episode.episode": "Серия:",
+  "episode.date": "Дата:",
 
-  "characterItem.lastKnowLocation": "Последняя локация:",
-  "characterItem.gender": "Пол:",
+  "character.lastKnowLocation": "Последняя локация:",
+  "character.gender": "Пол:",
+  "character.status": "Статус:",
+  "character.species": "Вид:",
+  "character.type": "Тип:",
+  "character.originLocation": "Место рождения:",
 
-  "locationItem.name": "Название локации:",
-  "locationItem.type": "Тип:",
-  "locationItem.dimension": "Измерение:",
+  "location.name": "Название локации:",
+  "location.type": "Тип:",
+  "location.dimension": "Измерение:",
 
   "button.more": "Ещё",
+  "button.close": "Закрыть",
 };
 
 export default messages;

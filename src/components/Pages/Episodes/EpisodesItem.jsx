@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Flex } from "@chakra-ui/react";
-import Text from "../shared/Text";
+import Text from "../../shared/Text";
 
 const EpisodesItem = ({ name, episode, characters, date }) => {
   return (
@@ -12,19 +12,19 @@ const EpisodesItem = ({ name, episode, characters, date }) => {
       boxShadow="dark-lg"
     >
       <Flex>
-        <Text messageId="episodeItem.name" />
+        <Text messageId="episode.name" />
         <Text ml="5px" wordWrap="break-word" color="white">
           {name}
         </Text>
       </Flex>
       <Flex>
-        <Text messageId="episodeItem.episode" />
+        <Text messageId="episode.episode" />
         <Text ml="5px" wordWrap="break-word" color="white">
           {episode}
         </Text>
       </Flex>
       <Flex>
-        <Text messageId="episodeItem.date" />
+        <Text messageId="episode.date" />
         <Text ml="5px" wordWrap="break-word" color="white">
           {date}
         </Text>
