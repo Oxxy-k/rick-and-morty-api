@@ -10,6 +10,7 @@ const messages = {
   "episodeItem.date": "Date:",
 
   "characterItem.lastKnowLocation": "Last known location:",
+  "characterItem.gender": "Gender:",
 
   "button.more": "More",
 };

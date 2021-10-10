@@ -40,9 +40,12 @@ const EpisodesItem = ({ name, status, species, gender, location, image }) => {
             status
           )} - ${species}`}</Text>
         </Flex>
-        <Text color="white" mt="5px">
-          {toUpperCaseFirst(gender)}
-        </Text>
+        <Flex alignItems="center" mt="5px">
+          <Text messageId="characterItem.gender" />
+          <Text color="white" ml="5px">
+            {toUpperCaseFirst(gender)}
+          </Text>
+        </Flex>
         <Text messageId="characterItem.lastKnowLocation" mt="5px" />
         <Text color="white">{location}</Text>
       </Box>

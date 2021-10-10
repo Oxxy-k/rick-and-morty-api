@@ -1,8 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Text as ChakraText } from "@chakra-ui/react";
 import { FormattedMessage } from "react-intl";
 
-export function Text({ messageId, messageValues, ...props }) {
+export function Text({
+  messageId,
+  fontSize,
+  lineHeight,
+  messageValues,
+  color,
+  ...props
+}) {
   const child = messageId ? (
     <FormattedMessage id={messageId} values={messageValues} />
   ) : (
@@ -10,14 +18,27 @@ export function Text({ messageId, messageValues, ...props }) {
   );
 
   return (
-    <ChakraText color="gray" fontSize="12px" line-height="14px" {...props}>
+    <ChakraText
+      color={color}
+      fontSize={fontSize}
+      lineHeight={lineHeight}
+      {...props}
+    >
       {child}
     </ChakraText>
   );
 }
 
-export function ErrorText(props) {
-  return <Text {...props} color="error" />;
-}
+Text.propTypes = {
+  fontSize: PropTypes.string,
+  lineHeight: PropTypes.string,
+  color: PropTypes.string,
+};
+
+Text.defaultProps = {
+  fontSize: "12px",
+  lineHeight: "14px",
+  color: "gray",
+};
 
 export default Text;

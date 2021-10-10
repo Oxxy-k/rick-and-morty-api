@@ -19,13 +19,13 @@ const Header = () => {
           <Logo />
           <Flex justifyContent="space-between" alignItems="center">
             <Link to="/episodes">
-              <Text color="gray" messageId="header.episodes" px="15px" />
+              <Text fontSize="16px" messageId="header.episodes" px="15px" />
             </Link>
             <Link to="/characters">
-              <Text color="gray" messageId="header.characters" px="15px" />
+              <Text fontSize="16px" messageId="header.characters" px="15px" />
             </Link>
             <Link to="/locations">
-              <Text color="gray" messageId="header.locations" px="15px" />
+              <Text fontSize="16px" messageId="header.locations" px="15px" />
             </Link>
           </Flex>
         </Flex>

@@ -10,6 +10,7 @@ const messages = {
   "episodeItem.date": "Дата:",
 
   "characterItem.lastKnowLocation": "Последняя локация:",
+  "characterItem.gender": "Пол:",
 
   "button.more": "Ещё",
 };
