@@ -22,7 +22,7 @@ import { toUpperCaseFirst } from "../../../helpers/toUpperCaseFirst";
 const FlexTextItem = ({ content, messageId }) => {
   return (
     <Flex>
-      <Text messageId={`episode.${messageId}`} fontSize="18px" minW="200px" />
+      <Text messageId={`location.${messageId}`} fontSize="18px" minW="200px" />
       <Text color="white" fontSize="18px">
         {toUpperCaseFirst(content)}
       </Text>
@@ -30,33 +30,33 @@ const FlexTextItem = ({ content, messageId }) => {
   );
 };
 
-const ModalEpisodeInfo = ({ onClose, isOpen, episodeId }) => {
-  const { getCharacterById, getEpisodeById } = useContext(ApiContext);
+const ModalLocationInfo = ({ onClose, isOpen, locationId }) => {
+  const { getCharacterById, getLocationById } = useContext(ApiContext);
   const [isLoading, setIsLoading] = useState(false);
-  const [episodeInfo, setEpisodeInfo] = useState({});
-  const [episodeCharacters, setEpisodeCharacters] = useState([]);
+  const [locationInfo, setLocationInfo] = useState({});
+  const [residents, setResidents] = useState([]);
 
-  const { name, air_date: date, episode } = episodeInfo;
+  const { name, type, dimension } = locationInfo;
 
   const content = [
-    { content: date, messageId: "date", key: 0 },
-    { content: episode, messageId: "episode", key: 1 },
+    { content: type, messageId: "type", key: 0 },
+    { content: dimension, messageId: "dimension", key: 1 },
   ];
 
   useEffect(() => {
-    if (!episodeId) return;
+    if (!locationId) return;
     (async () => {
       setIsLoading(true);
-      const episodeInfo = await getEpisodeById(episodeId);
-      const episodeCharactersId = episodeInfo.characters.map((item) =>
+      const locationInfo = await getLocationById(locationId);
+      const residentsId = locationInfo.residents.map((item) =>
         item.replace(queryCharacters, "")
       );
-      const episodeCharacters = await getCharacterById(episodeCharactersId);
-      setEpisodeCharacters(episodeCharacters);
-      setEpisodeInfo(episodeInfo);
+      const residents = await getCharacterById(residentsId);
+      setResidents(residents);
+      setLocationInfo(locationInfo);
       setIsLoading(false);
     })();
-  }, [episodeId]);
+  }, [locationId]);
 
   return (
     <Modal
@@ -90,9 +90,9 @@ const ModalEpisodeInfo = ({ onClose, isOpen, episodeId }) => {
                     )
                 )}
               </Box>
-              <Text messageId="episode.characters" mt="5px" fontSize="24px" />
+              <Text messageId="location.residents" mt="5px" fontSize="24px" />
               <Grid templateColumns="repeat(4, 2fr)" gap={5} mt="5px">
-                {episodeCharacters.map(({ name, image, id }) => (
+                {residents.map(({ name, image, id }) => (
                   <GridItem key={id}>
                     <Box>
                       <Image src={image} maxW="70px" />
@@ -114,4 +114,4 @@ const ModalEpisodeInfo = ({ onClose, isOpen, episodeId }) => {
   );
 };
 
-export default ModalEpisodeInfo;
+export default ModalLocationInfo;

@@ -5,7 +5,7 @@ import Text from "../../shared/Text";
 const EpisodesItem = ({ name, episode, date, onClick }) => {
   return (
     <Box
-      onClick={() => onClick()}
+      onClick={onClick}
       cursor="pointer"
       _hover={{
         bgColor: "black",

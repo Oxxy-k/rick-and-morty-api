@@ -4,9 +4,12 @@ import { ApiContext } from "../../../contex/api";
 import LocationItem from "./LocationItem";
 import Button from "../../shared/Button";
 import Spinner from "../../Spinner";
+import ModalLocationInfo from "./ModalLocationInfo";
 
 function EpisodesPage() {
   const { getAllLocations } = useContext(ApiContext);
+  const [modalVisibility, toggleModalVisibility] = useState(false);
+  const [currentLocationId, setCurrentEpisodeId] = useState();
   const [isNextPageExist, setIsNextPageExist] = useState(true);
   const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,32 +34,47 @@ function EpisodesPage() {
   }, [page]);
 
   return (
-    <Box p="20px">
-      {isFirstLoading ? (
-        <Spinner />
-      ) : (
-        <>
-          <Grid templateColumns="repeat(2, 2fr)" gap={3}>
-            {!!locations.length &&
-              locations.map(({ id, name, type, dimension }) => (
-                <GridItem key={id}>
-                  <LocationItem name={name} type={type} dimension={dimension} />
-                </GridItem>
-              ))}
-          </Grid>
-          {isNextPageExist && (
-            <Box mt="20px">
-              <Button
-                size="md"
-                isLoading={isLoading}
-                onClick={() => setPage(page + 1)}
-                messageId="button.more"
-              />
-            </Box>
-          )}
-        </>
-      )}
-    </Box>
+    <>
+      <Box p="20px">
+        {isFirstLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <Grid templateColumns="repeat(2, 2fr)" gap={3}>
+              {!!locations.length &&
+                locations.map(({ id, name, type, dimension }) => (
+                  <GridItem key={id}>
+                    <LocationItem
+                      onClick={() => {
+                        toggleModalVisibility(true);
+                        setCurrentEpisodeId(id);
+                      }}
+                      name={name}
+                      type={type}
+                      dimension={dimension}
+                    />
+                  </GridItem>
+                ))}
+            </Grid>
+            {isNextPageExist && (
+              <Box mt="20px">
+                <Button
+                  size="md"
+                  isLoading={isLoading}
+                  onClick={() => setPage(page + 1)}
+                  messageId="button.more"
+                />
+              </Box>
+            )}
+          </>
+        )}
+      </Box>
+      <ModalLocationInfo
+        locationId={currentLocationId}
+        onClose={() => toggleModalVisibility(false)}
+        isOpen={modalVisibility}
+      />
+    </>
   );
 }
 

@@ -21,6 +21,7 @@ const messages = {
   "location.name": "Название локации:",
   "location.type": "Тип:",
   "location.dimension": "Измерение:",
+  "location.residents": "Жители",
 
   "button.more": "Ещё",
   "button.close": "Закрыть",
