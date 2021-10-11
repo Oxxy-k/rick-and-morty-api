@@ -35,11 +35,11 @@ export function ApiProvider({ children }) {
   const getAllEpisodes = async (page) =>
     await getResource(`https://rickandmortyapi.com/api/episode?page=${page}`);
 
-  const getEpisodesById = async (id) =>
-    await getResource(`https://rickandmortyapi.com/api/location/${id}`);
+  const getEpisodeById = async (id) =>
+    await getResource(`https://rickandmortyapi.com/api/episode/${id}`);
 
-  const getEpisodesByParams = async (params) =>
-    await getResource(`https://rickandmortyapi.com/api/location/?${params}`);
+  const getEpisodeByParams = async (params) =>
+    await getResource(`https://rickandmortyapi.com/api/episode/?${params}`);
 
   return (
     <ApiContext.Provider
@@ -51,8 +51,8 @@ export function ApiProvider({ children }) {
         getLocationById,
         getLocationByParams,
         getAllEpisodes,
-        getEpisodesById,
-        getEpisodesByParams,
+        getEpisodeById,
+        getEpisodeByParams,
       }}
     >
       {children}

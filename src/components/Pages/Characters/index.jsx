@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Box, Grid, GridItem, Button } from "@chakra-ui/react";
+import { Box, Grid, GridItem } from "@chakra-ui/react";
 import { ApiContext } from "../../../contex/api";
 import CharacterItem from "./CharacterItem";
-import Text from "../../shared/Text";
+import Button from "../../shared/Button";
 import Spinner from "../../Spinner";
 import ModalCharacterInfo from "./ModalCharacterInfo";
 
@@ -62,20 +62,13 @@ function CharactersPage() {
                 )}
             </Grid>
             {isNextPageExist && (
-              <Box>
+              <Box mt="20px">
                 <Button
-                  variant="outline"
+                  size="md"
                   isLoading={isLoading}
-                  mt="20px"
                   onClick={() => setPage(page + 1)}
-                  _hover={{
-                    bgColor: "none",
-                    boxShadow: "0 0 10px rgb(0, 217, 255)",
-                  }}
-                  _focus={{ outline: "none" }}
-                >
-                  <Text messageId="button.more" color="white" />
-                </Button>
+                  messageId="button.more"
+                />
               </Box>
             )}
           </>

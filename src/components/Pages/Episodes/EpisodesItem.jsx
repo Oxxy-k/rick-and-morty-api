@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import Text from "../../shared/Text";
 
-const EpisodesItem = ({ name, episode, characters, date }) => {
+const EpisodesItem = ({ name, episode, date }) => {
   return (
     <Box
       p="20px"
@@ -13,19 +13,19 @@ const EpisodesItem = ({ name, episode, characters, date }) => {
     >
       <Flex>
         <Text messageId="episode.name" />
-        <Text ml="5px" wordWrap="break-word" color="white">
+        <Text ml="5px" wordwrap="break-word" color="white">
           {name}
         </Text>
       </Flex>
       <Flex>
         <Text messageId="episode.episode" />
-        <Text ml="5px" wordWrap="break-word" color="white">
+        <Text ml="5px" wordwrap="break-word" color="white">
           {episode}
         </Text>
       </Flex>
       <Flex>
         <Text messageId="episode.date" />
-        <Text ml="5px" wordWrap="break-word" color="white">
+        <Text ml="5px" wordwrap="break-word" color="white">
           {date}
         </Text>
       </Flex>

@@ -15,6 +15,7 @@ const messages = {
   "character.species": "Вид:",
   "character.type": "Тип:",
   "character.originLocation": "Место рождения:",
+  "character.firstSeenIn": "Впервые появился:",
 
   "location.name": "Название локации:",
   "location.type": "Тип:",
