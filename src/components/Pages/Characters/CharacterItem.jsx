@@ -22,7 +22,7 @@ const CharacterItem = ({
 }) => {
   return (
     <Flex
-      onClick={() => onClick()}
+      onClick={onClick}
       cursor="pointer"
       _hover={{
         bgColor: "black",

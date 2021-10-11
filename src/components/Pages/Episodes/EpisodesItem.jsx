@@ -2,9 +2,15 @@ import React from "react";
 import { Box, Flex } from "@chakra-ui/react";
 import Text from "../../shared/Text";
 
-const EpisodesItem = ({ name, episode, date }) => {
+const EpisodesItem = ({ name, episode, date, onClick }) => {
   return (
     <Box
+      onClick={() => onClick()}
+      cursor="pointer"
+      _hover={{
+        bgColor: "black",
+        boxShadow: "0 0 10px rgb(0, 217, 255)",
+      }}
       p="20px"
       w="400px"
       borderRadius="12px"

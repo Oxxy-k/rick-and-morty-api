@@ -15,13 +15,14 @@ import Spinner from "../../Spinner";
 import Button from "../../shared/Button";
 import Text from "../../shared/Text";
 import { queryEpisodes } from "../../../constants/queryStringsForApi";
+import { toUpperCaseFirst } from "../../../helpers/toUpperCaseFirst";
 
 const FlexTextItem = ({ content, messageId }) => {
   return (
     <Flex>
       <Text messageId={`character.${messageId}`} fontSize="18px" minW="200px" />
       <Text color="white" fontSize="18px">
-        {content}
+        {toUpperCaseFirst(content)}
       </Text>
     </Flex>
   );

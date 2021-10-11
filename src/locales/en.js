@@ -8,6 +8,7 @@ const messages = {
   "episode.name": "Episode name:",
   "episode.episode": "Episode:",
   "episode.date": "Date:",
+  "episode.characters": "Characters",
 
   "character.lastKnowLocation": "Last known location:",
   "character.gender": "Gender:",

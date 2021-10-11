@@ -1,12 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Box, Grid, GridItem } from "@chakra-ui/react";
 import { ApiContext } from "../../../contex/api";
+import ModalEpisodeInfo from "./ModalEpisodeInfo";
 import EpisodesItem from "./EpisodesItem";
 import Button from "../../shared/Button";
 import Spinner from "../../Spinner";
 
 function EpisodesPage() {
   const { getAllEpisodes } = useContext(ApiContext);
+  const [modalVisibility, toggleModalVisibility] = useState(false);
+  const [currentEpisodeId, setCurrentEpisodeId] = useState();
   const [isNextPageExist, setIsNextPageExist] = useState(true);
   const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,32 +34,47 @@ function EpisodesPage() {
   }, [page]);
 
   return (
-    <Box p="20px">
-      {isFirstLoading ? (
-        <Spinner />
-      ) : (
-        <>
-          <Grid templateColumns="repeat(2, 2fr)" gap={3}>
-            {!!episodes.length &&
-              episodes.map(({ id, name, episode, air_date }) => (
-                <GridItem key={id}>
-                  <EpisodesItem name={name} episode={episode} date={air_date} />
-                </GridItem>
-              ))}
-          </Grid>
-          {isNextPageExist && (
-            <Box mt="20px">
-              <Button
-                size="md"
-                isLoading={isLoading}
-                onClick={() => setPage(page + 1)}
-                messageId="button.more"
-              />
-            </Box>
-          )}
-        </>
-      )}
-    </Box>
+    <>
+      <Box p="20px">
+        {isFirstLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <Grid templateColumns="repeat(2, 2fr)" gap={3}>
+              {!!episodes.length &&
+                episodes.map(({ id, name, episode, air_date }) => (
+                  <GridItem key={id}>
+                    <EpisodesItem
+                      onClick={() => {
+                        toggleModalVisibility(true);
+                        setCurrentEpisodeId(id);
+                      }}
+                      name={name}
+                      episode={episode}
+                      date={air_date}
+                    />
+                  </GridItem>
+                ))}
+            </Grid>
+            {isNextPageExist && (
+              <Box mt="20px">
+                <Button
+                  size="md"
+                  isLoading={isLoading}
+                  onClick={() => setPage(page + 1)}
+                  messageId="button.more"
+                />
+              </Box>
+            )}
+          </>
+        )}
+      </Box>
+      <ModalEpisodeInfo
+        episodeId={currentEpisodeId}
+        onClose={() => toggleModalVisibility(false)}
+        isOpen={modalVisibility}
+      />
+    </>
   );
 }
 
