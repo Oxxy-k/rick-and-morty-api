@@ -40,10 +40,13 @@ function EpisodesPage() {
           <Spinner />
         ) : (
           <>
-            <Grid templateColumns="repeat(2, 2fr)" gap={3}>
+            <Grid
+              templateColumns={["repeat(1, 2fr)", "repeat(2, 2fr)"]}
+              gap={3}
+            >
               {!!episodes.length &&
                 episodes.map(({ id, name, episode, air_date }) => (
-                  <GridItem key={id}>
+                  <GridItem key={id} display="flex" justifyContent="center">
                     <EpisodesItem
                       onClick={() => {
                         toggleModalVisibility(true);
@@ -57,7 +60,7 @@ function EpisodesPage() {
                 ))}
             </Grid>
             {isNextPageExist && (
-              <Box mt="20px">
+              <Box mt="20px" display="flex" justifyContent="center">
                 <Button
                   size="md"
                   isLoading={isLoading}

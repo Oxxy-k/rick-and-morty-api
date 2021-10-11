@@ -29,7 +29,7 @@ const CharacterItem = ({
         boxShadow: "0 0 10px rgb(0, 217, 255)",
       }}
       p="20px"
-      w="400px"
+      w={["350px", "400px", "320px", "400px"]}
       h="150px"
       borderRadius="12px"
       backgroundColor="rgba(0, 0, 0, 0.9)"

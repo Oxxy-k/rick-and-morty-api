@@ -40,11 +40,18 @@ function CharactersPage() {
           <Spinner />
         ) : (
           <>
-            <Grid templateColumns="repeat(2, 2fr)" gap={3}>
+            <Grid
+              templateColumns={[
+                "repeat(1, 2fr)",
+                "repeat(1, 2fr)",
+                "repeat(2, 2fr)",
+              ]}
+              gap={3}
+            >
               {!!characters.length &&
                 characters.map(
                   ({ id, name, status, species, gender, location, image }) => (
-                    <GridItem key={id}>
+                    <GridItem key={id} display="flex" justifyContent="center">
                       <CharacterItem
                         onClick={() => {
                           toggleModalVisibility(true);
@@ -62,7 +69,7 @@ function CharactersPage() {
                 )}
             </Grid>
             {isNextPageExist && (
-              <Box mt="20px">
+              <Box mt="20px" display="flex" justifyContent="center">
                 <Button
                   size="md"
                   isLoading={isLoading}

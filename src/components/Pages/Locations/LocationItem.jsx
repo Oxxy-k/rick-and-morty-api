@@ -13,7 +13,7 @@ const EpisodesItem = ({ name, type, dimension, onClick }) => {
         boxShadow: "0 0 10px rgb(0, 217, 255)",
       }}
       p="20px"
-      w="400px"
+      w={["250px", "200px", "300px", "400px"]}
       borderRadius="12px"
       backgroundColor="rgba(0, 0, 0, 0.9)"
       boxShadow="dark-lg"

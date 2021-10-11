@@ -7,10 +7,11 @@ import { LngProvider } from "./contex/locale";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { theme } from "@chakra-ui/react";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Router>
         <ApiProvider>
           <LngProvider>
