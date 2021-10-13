@@ -51,8 +51,14 @@ const ModalLocationInfo = ({ onClose, isOpen, locationId }) => {
       const residentsId = locationInfo.residents.map((item) =>
         item.replace(queryCharacters, "")
       );
-      const residents = await getCharacterById(residentsId);
-      setResidents(residents);
+      if (residentsId.length) {
+        const residents = await getCharacterById(residentsId);
+        Array.isArray(residents)
+          ? setResidents(residents)
+          : setResidents([residents]);
+      } else {
+        setResidents([]);
+      }
       setLocationInfo(locationInfo);
       setIsLoading(false);
     })();
@@ -91,18 +97,20 @@ const ModalLocationInfo = ({ onClose, isOpen, locationId }) => {
                 )}
               </Box>
               <Text messageId="location.residents" mt="5px" fontSize="24px" />
-              <Grid templateColumns="repeat(4, 2fr)" gap={5} mt="5px">
-                {residents.map(({ name, image, id }) => (
-                  <GridItem key={id}>
-                    <Box>
-                      <Image src={image} maxW="70px" />
-                      <Text color="white" mt="5px">
-                        {name}
-                      </Text>
-                    </Box>
-                  </GridItem>
-                ))}
-              </Grid>
+              {residents.length && (
+                <Grid templateColumns="repeat(4, 2fr)" gap={5} mt="5px">
+                  {residents.map(({ name, image, id }) => (
+                    <GridItem key={id}>
+                      <Box>
+                        <Image src={image} maxW="70px" />
+                        <Text color="white" mt="5px">
+                          {name}
+                        </Text>
+                      </Box>
+                    </GridItem>
+                  ))}
+                </Grid>
+              )}
             </ModalBody>
             <ModalFooter>
               <Button onClick={onClose} messageId="button.close" />
