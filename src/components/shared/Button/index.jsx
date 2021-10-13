@@ -3,9 +3,16 @@ import PropTypes from "prop-types";
 import { Button as ChakraButton } from "@chakra-ui/react";
 import Text from "../Text";
 
-const Button = ({ onClick, messageId, variant, isLoading, size, ...props }) => (
+const Button = ({
+  onClick,
+  messageId,
+  variant,
+  isLoading,
+  size,
+  textColor,
+  ...props
+}) => (
   <ChakraButton
-    {...props}
     onClick={onClick}
     variant={variant}
     isLoading={isLoading}
@@ -15,12 +22,14 @@ const Button = ({ onClick, messageId, variant, isLoading, size, ...props }) => (
       boxShadow: "0 0 10px rgb(0, 217, 255)",
     }}
     _focus={{ outline: "none" }}
+    {...props}
   >
-    <Text messageId={messageId} color="white" />
+    <Text messageId={messageId} color={textColor} />
   </ChakraButton>
 );
 
 Button.propTypes = {
+  textColor: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   variant: PropTypes.oneOf(["link", "outline", "solid", "ghost", "unstyled"]),
   isLoading: PropTypes.bool,
@@ -28,6 +37,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  textColor: "white",
   variant: "outline",
   isLoading: false,
   size: "sm",

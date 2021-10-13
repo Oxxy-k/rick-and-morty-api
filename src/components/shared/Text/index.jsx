@@ -30,13 +30,13 @@ export function Text({
 }
 
 Text.propTypes = {
-  fontSize: PropTypes.string,
+  fontSize: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   lineHeight: PropTypes.string,
   color: PropTypes.string,
 };
 
 Text.defaultProps = {
-  fontSize: "12px",
+  fontSize: ["14px", "18px"],
   lineHeight: "150%",
   color: "gray",
 };

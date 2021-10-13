@@ -29,13 +29,14 @@ const CharacterItem = ({
         boxShadow: "0 0 10px rgb(0, 217, 255)",
       }}
       p="20px"
-      w={["320px", "400px", "320px", "400px"]}
-      h="150px"
+      w={["320px", "400px", "500px", "550px"]}
+      h={["max-content", "200px"]}
       borderRadius="12px"
       backgroundColor="rgba(0, 0, 0, 0.9)"
       boxShadow="dark-lg"
+      alignItems="center"
     >
-      <Image src={image} />
+      <Image src={image} h={["100px", "160px"]} />
       <Box pl="10px" textAlign="left">
         <Text fontSize="20px" color="white">
           {name}
@@ -45,7 +46,7 @@ const CharacterItem = ({
             icon={faCircle}
             color={generateColorStatus(status)}
           />
-          <Text fontSize="12px" ml="5px" color="white">{`${toUpperCaseFirst(
+          <Text ml="5px" color="white">{`${toUpperCaseFirst(
             status
           )} - ${species}`}</Text>
         </Flex>

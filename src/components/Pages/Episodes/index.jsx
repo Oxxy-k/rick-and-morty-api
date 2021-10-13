@@ -1,12 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Input } from "@chakra-ui/react";
+import { useIntl } from "react-intl";
 import { ApiContext } from "../../../contex/api";
 import ModalEpisodeInfo from "./ModalEpisodeInfo";
 import EpisodesItem from "./EpisodesItem";
 import Button from "../../shared/Button";
 import Spinner from "../../Spinner";
+import Drawer from "../../shared/Drawer";
 
-function EpisodesPage() {
+function EpisodesPage({ isOpen, onOpen, onClose }) {
+  const intl = useIntl();
   const { getAllEpisodes } = useContext(ApiContext);
   const [modalVisibility, toggleModalVisibility] = useState(false);
   const [currentEpisodeId, setCurrentEpisodeId] = useState();
@@ -35,6 +38,13 @@ function EpisodesPage() {
 
   return (
     <>
+      <Drawer isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
+        <Input
+          focusBorderColor="rgb(0, 217, 255)"
+          variant="flushed"
+          placeholder={intl.formatMessage({ id: "placeholder.search" })}
+        />
+      </Drawer>
       <Box p="20px">
         {isFirstLoading ? (
           <Spinner />

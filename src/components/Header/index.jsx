@@ -1,17 +1,21 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import IconButton from "../shared/IconButton";
 import { Flex } from "@chakra-ui/react";
+import Button from "../shared/Button";
 import Text from "../shared/Text";
 import LocaleDropdown from "./LocaleDropdown";
 import Logo from "../Logo";
 
-const Header = () => {
+const Header = ({ onOpen }) => {
   return (
     <Flex
       position="sticky"
       top="0"
       backgroundColor="black"
-      height="30px"
+      height="40px"
       alignItems="center"
     >
       <Flex alignItems="center" justifyContent="space-between" px="5%" w="100%">
@@ -19,14 +23,19 @@ const Header = () => {
           <Logo />
           <Flex justifyContent="space-between" alignItems="center">
             <Link to="/episodes">
-              <Text fontSize="16px" messageId="header.episodes" px="15px" />
+              <Text messageId="header.episodes" px="15px" />
             </Link>
             <Link to="/characters">
-              <Text fontSize="16px" messageId="header.characters" px="15px" />
+              <Text messageId="header.characters" px="15px" />
             </Link>
             <Link to="/locations">
-              <Text fontSize="16px" messageId="header.locations" px="15px" />
+              <Text messageId="header.locations" px="15px" />
             </Link>
+            <IconButton
+              icon={<FontAwesomeIcon icon={faSearch} color="gray" />}
+              size="sm"
+              onClick={onOpen}
+            />
           </Flex>
         </Flex>
         <LocaleDropdown />

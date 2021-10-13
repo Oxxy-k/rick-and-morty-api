@@ -2,6 +2,10 @@ const messages = {
   "header.episodes": "Episodes",
   "header.characters": "Characters",
   "header.locations": "Locations",
+  "header.searchByParameters": "Searching by parameters",
+
+  "placeholder.search": "Search...",
+
   "languages.en": "English",
   "languages.ru": "Russian",
 
@@ -25,6 +29,8 @@ const messages = {
 
   "button.more": "More",
   "button.close": "Close",
+  "button.cancel": "Cancel",
+  "button.search": "Search",
 };
 
 export default messages;

@@ -1,12 +1,19 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Input, Select, Flex } from "@chakra-ui/react";
+import { useIntl } from "react-intl";
 import { ApiContext } from "../../../contex/api";
+import { initialPersonSearchingParams } from "../../../constants/searchingParams";
 import CharacterItem from "./CharacterItem";
 import Button from "../../shared/Button";
 import Spinner from "../../Spinner";
 import ModalCharacterInfo from "./ModalCharacterInfo";
+import Drawer from "../../shared/Drawer";
+import Text from "../../shared/Text";
 
-function CharactersPage() {
+const { statuses, species, types, gender } = initialPersonSearchingParams;
+
+function CharactersPage({ isOpen, onOpen, onClose }) {
+  const intl = useIntl();
   const { getAllCharacter } = useContext(ApiContext);
   const [currentCharacterId, setCurrentCharacterId] = useState();
   const [modalVisibility, toggleModalVisibility] = useState(false);
@@ -35,6 +42,47 @@ function CharactersPage() {
 
   return (
     <>
+      <Drawer isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
+        <Input
+          focusBorderColor="rgb(0, 217, 255)"
+          variant="flushed"
+          placeholder={intl.formatMessage({ id: "placeholder.search" })}
+        />
+        <Flex justifyContent="space-between" alignItems="center" mt="20px">
+          <Text messageId="character.status" />
+          <Select maxW="200px" size="xs" focusBorderColor="rgb(0, 217, 255)">
+            {statuses.map(({ status, id }) => (
+              <option key={id} color="black">
+                {status}
+              </option>
+            ))}
+          </Select>
+        </Flex>
+        <Flex justifyContent="space-between" alignItems="center" mt="20px">
+          <Text messageId="character.species" />
+          <Select maxW="200px" size="xs" focusBorderColor="rgb(0, 217, 255)">
+            {species.map(({ species, id }) => (
+              <option key={id}>{species}</option>
+            ))}
+          </Select>
+        </Flex>
+        <Flex justifyContent="space-between" alignItems="center" mt="20px">
+          <Text messageId="character.type" />
+          <Select maxW="200px" size="xs" focusBorderColor="rgb(0, 217, 255)">
+            {types.map(({ type, id }) => (
+              <option key={id}>{type}</option>
+            ))}
+          </Select>
+        </Flex>
+        <Flex justifyContent="space-between" alignItems="center" mt="20px">
+          <Text messageId="character.gender" />
+          <Select maxW="200px" size="xs" focusBorderColor="rgb(0, 217, 255)">
+            {gender.map(({ gender, id }) => (
+              <option key={id}>{gender}</option>
+            ))}
+          </Select>
+        </Flex>
+      </Drawer>
       <Box p="20px">
         {isFirstLoading ? (
           <Spinner />
@@ -42,6 +90,7 @@ function CharactersPage() {
           <>
             <Grid
               templateColumns={[
+                "repeat(1, 2fr)",
                 "repeat(1, 2fr)",
                 "repeat(1, 2fr)",
                 "repeat(2, 2fr)",

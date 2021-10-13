@@ -15,13 +15,13 @@ const LocaleDropdown = () => {
 
   return (
     <Select
-      w="100px"
+      w="120px"
       value={locale}
       onChange={(i) => onChange(i.target.value)}
       border="none"
       _focus={{ outline: "none" }}
       cursor="pointer"
-      size="sm"
+      size="lg"
       color="gray"
     >
       {locales.map((item) => (
