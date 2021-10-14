@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Box, Grid, GridItem, Input, Select, Flex } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 import { ApiContext } from "../../../contex/api";
-import { initialPersonSearchingParams } from "../../../constants/searchingParams";
+import { personSearchingParams } from "../../../constants/searchingParams";
 import CharacterItem from "./CharacterItem";
 import Button from "../../shared/Button";
 import Spinner from "../../Spinner";
@@ -10,29 +10,62 @@ import ModalCharacterInfo from "./ModalCharacterInfo";
 import Drawer from "../../shared/Drawer";
 import Text from "../../shared/Text";
 
-const { statuses, species, types, gender } = initialPersonSearchingParams;
+const initialParamsForSearching = {
+  name: "",
+  status: "All",
+  species: "All",
+  type: "All",
+  gender: "All",
+};
+
+const countOfFirstPage = 1;
 
 function CharactersPage({ isOpen, onOpen, onClose }) {
   const intl = useIntl();
-  const { getAllCharacter } = useContext(ApiContext);
+  const { getCharacterByParams } = useContext(ApiContext);
+  const [paramsForSearching, setParamsForSearching] = useState(
+    initialParamsForSearching
+  );
   const [currentCharacterId, setCurrentCharacterId] = useState();
   const [modalVisibility, toggleModalVisibility] = useState(false);
   const [isNextPageExist, setIsNextPageExist] = useState(true);
   const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [characters, setCharacters] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(countOfFirstPage);
+  const [isError, setIsError] = useState(false);
+
+  const updateParamsForSearching = (params, type) => {
+    setParamsForSearching({ ...paramsForSearching, [type]: params });
+  };
+
+  const onUpdateListCharacter = async () => {
+    setIsLoading(true);
+    setPage(countOfFirstPage);
+    const data = await getCharacterByParams(paramsForSearching, page);
+    setIsNextPageExist(!!data.info.next);
+    setCharacters(data.results);
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     (async () => {
       if (!characters.length) {
         setIsFirstLoading(true);
       }
+      if (isError) {
+        setIsError(false);
+      }
       setIsLoading(true);
-      const data = await getAllCharacter(page);
-      setIsNextPageExist(!!data.info.next);
-      setCharacters([...characters, ...data.results]);
-      setIsLoading(false);
+      try {
+        const data = await getCharacterByParams(paramsForSearching, page);
+        setIsNextPageExist(!!data.info.next);
+        setCharacters([...characters, ...data.results]);
+        setIsLoading(false);
+      } catch (error) {
+        setIsError(true);
+        setIsLoading(false);
+      }
       if (characters.length) {
         return;
       }
@@ -42,46 +75,43 @@ function CharactersPage({ isOpen, onOpen, onClose }) {
 
   return (
     <>
-      <Drawer isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
+      <Drawer
+        isOpen={isOpen}
+        onOpen={onOpen}
+        onClose={onClose}
+        onUpdateListCharacter={onUpdateListCharacter}
+      >
         <Input
+          onChange={(e) => updateParamsForSearching(e.target.value, "name")}
           focusBorderColor="rgb(0, 217, 255)"
           variant="flushed"
           placeholder={intl.formatMessage({ id: "placeholder.search" })}
         />
-        <Flex justifyContent="space-between" alignItems="center" mt="20px">
-          <Text messageId="character.status" />
-          <Select maxW="200px" size="xs" focusBorderColor="rgb(0, 217, 255)">
-            {statuses.map(({ status, id }) => (
-              <option key={id} color="black">
-                {status}
-              </option>
-            ))}
-          </Select>
-        </Flex>
-        <Flex justifyContent="space-between" alignItems="center" mt="20px">
-          <Text messageId="character.species" />
-          <Select maxW="200px" size="xs" focusBorderColor="rgb(0, 217, 255)">
-            {species.map(({ species, id }) => (
-              <option key={id}>{species}</option>
-            ))}
-          </Select>
-        </Flex>
-        <Flex justifyContent="space-between" alignItems="center" mt="20px">
-          <Text messageId="character.type" />
-          <Select maxW="200px" size="xs" focusBorderColor="rgb(0, 217, 255)">
-            {types.map(({ type, id }) => (
-              <option key={id}>{type}</option>
-            ))}
-          </Select>
-        </Flex>
-        <Flex justifyContent="space-between" alignItems="center" mt="20px">
-          <Text messageId="character.gender" />
-          <Select maxW="200px" size="xs" focusBorderColor="rgb(0, 217, 255)">
-            {gender.map(({ gender, id }) => (
-              <option key={id}>{gender}</option>
-            ))}
-          </Select>
-        </Flex>
+
+        {personSearchingParams.map(({ type, content, key }) => (
+          <Flex
+            justifyContent="space-between"
+            alignItems="center"
+            mt="20px"
+            key={key}
+          >
+            <Text messageId={`character.${type}`} />
+            <Select
+              value={paramsForSearching?.[type]}
+              onChange={(e) => updateParamsForSearching(e.target.value, type)}
+              maxW="200px"
+              size="xs"
+              focusBorderColor="rgb(0, 217, 255)"
+              borderRadius="12px"
+            >
+              {content.map(({ option, id }) => (
+                <option key={id} color="black">
+                  {option}
+                </option>
+              ))}
+            </Select>
+          </Flex>
+        ))}
       </Drawer>
       <Box p="20px">
         {isFirstLoading ? (

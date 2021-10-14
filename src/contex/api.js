@@ -20,8 +20,17 @@ export function ApiProvider({ children }) {
   const getCharacterById = async (id) =>
     await getResource(`https://rickandmortyapi.com/api/character/${id}`);
 
-  const getCharacterByParams = async (params) =>
-    await getResource(`https://rickandmortyapi.com/api/character/?${params}`);
+  const getCharacterByParams = async (params, page) => {
+    let { name, status, species, type, gender } = params;
+    name = name === "" ? "" : `&name=${name}`;
+    status = status === "All" ? "" : `&status=${status}`;
+    species = species === "All" ? "" : `&species=${species}`;
+    type = type === "All" ? "" : `&type=${type}`;
+    gender = gender === "All" ? "" : `&gender=${gender}`;
+    return await getResource(
+      `https://rickandmortyapi.com/api/character/?page=${page}${name}${status}${species}${type}${gender}  `
+    );
+  };
 
   const getAllLocations = async (page) =>
     await getResource(`https://rickandmortyapi.com/api/location/?page=${page}`);

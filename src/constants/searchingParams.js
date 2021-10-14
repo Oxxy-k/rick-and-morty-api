@@ -1,30 +1,46 @@
-export const initialPersonSearchingParams = {
-  statuses: [
-    { status: "All", id: "" },
-    { status: "Alive", id: "alive" },
-    { status: "Dead", id: "dead" },
-    { status: "Unknown", id: "unknown" },
-  ],
-  species: [
-    { species: "All", id: "" },
-    { species: "Human", id: "human" },
-    { species: "Alien", id: "alien" },
-    { species: "Humanoid", id: "humanoid" },
-    { species: "Unknown", id: "unknown" },
-    { species: "Animal", id: "animal" },
-    { species: "Robot", id: "robot" },
-  ],
-  types: [
-    { type: "All", id: "" },
-    { type: "Parasite", id: "parasite" },
-    { type: "Vampire", id: "vampire" },
-    { type: "Centaur", id: "centaur" },
-  ],
-  gender: [
-    { gender: "All", id: "" },
-    { gender: "Female", id: "female" },
-    { gender: "Male", id: "male" },
-    { gender: "Genderless", id: "genderless" },
-    { gender: "Unknown", id: "unknown" },
-  ],
-};
+export const personSearchingParams = [
+  {
+    content: [
+      { option: "All", id: 1 },
+      { option: "Alive", id: 2 },
+      { option: "Dead", id: 3 },
+      { option: "Unknown", id: 4 },
+    ],
+    type: "status",
+    key: 1,
+  },
+  {
+    content: [
+      { option: "All", id: 1 },
+      { option: "Human", id: 2 },
+      { option: "Alien", id: 3 },
+      { option: "Humanoid", id: 4 },
+      { option: "Unknown", id: 5 },
+      { option: "Animal", id: 6 },
+      { option: "Robot", id: 7 },
+    ],
+    type: "species",
+    key: 2,
+  },
+  {
+    content: [
+      { option: "All", id: 1 },
+      { option: "Parasite", id: 2 },
+      { option: "Vampire", id: 3 },
+      { option: "Centaur", id: 4 },
+    ],
+    type: "type",
+    key: 3,
+  },
+  {
+    content: [
+      { option: "All", id: 1 },
+      { option: "Female", id: 2 },
+      { option: "Male", id: 3 },
+      { option: "Genderless", id: 4 },
+      { option: "Unknown", id: 5 },
+    ],
+    type: "gender",
+    key: 4,
+  },
+];

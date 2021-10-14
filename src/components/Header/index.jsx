@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import IconButton from "../shared/IconButton";
 import { Flex } from "@chakra-ui/react";
-import Button from "../shared/Button";
 import Text from "../shared/Text";
 import LocaleDropdown from "./LocaleDropdown";
 import Logo from "../Logo";

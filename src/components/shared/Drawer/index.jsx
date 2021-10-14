@@ -10,7 +10,12 @@ import {
 import Button from "../Button";
 import Text from "../Text";
 
-export default function Drawer({ isOpen, onClose, children, onSearch }) {
+export default function Drawer({
+  isOpen,
+  onClose,
+  children,
+  onUpdateListCharacter,
+}) {
   return (
     <>
       <ChakraDrawer isOpen={isOpen} placement="left" onClose={onClose}>
@@ -25,8 +30,11 @@ export default function Drawer({ isOpen, onClose, children, onSearch }) {
           <DrawerFooter>
             <Button size="md" onClick={onClose} messageId="button.cancel" />
             <Button
-              onClick={onSearch}
-              size="md"
+              onClick={() => {
+                onUpdateListCharacter();
+                onClose();
+              }}
+              size="sm"
               backgroundColor="rgb(0, 217, 255)"
               textColor="black"
               variant="ghost"
