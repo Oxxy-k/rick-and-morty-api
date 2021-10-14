@@ -49,3 +49,13 @@ export const episodeSearchingParams = [
   { type: "season", id: 1, max: 3 },
   { type: "episode", id: 2, max: 25 },
 ];
+
+export const locationSearchingParams = [
+  { type: "All", id: 1 },
+  { type: "Planet", id: 2 },
+  { type: "Cluster", id: 3 },
+  { type: "TV", id: 4 },
+  { type: "Space station", id: 5 },
+  { type: "Resort", id: 6 },
+  { type: "Microverse", id: 7 },
+];

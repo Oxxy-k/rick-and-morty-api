@@ -105,9 +105,7 @@ function CharactersPage({ isOpen, onOpen, onClose }) {
               borderRadius="12px"
             >
               {content.map(({ option, id }) => (
-                <option key={id} color="black">
-                  {option}
-                </option>
+                <option key={id}>{option}</option>
               ))}
             </Select>
           </Flex>

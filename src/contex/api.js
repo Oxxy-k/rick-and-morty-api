@@ -38,8 +38,15 @@ export function ApiProvider({ children }) {
   const getLocationById = async (id) =>
     await getResource(`https://rickandmortyapi.com/api/location/${id}`);
 
-  const getLocationByParams = async (params) =>
-    await getResource(`https://rickandmortyapi.com/api/location/?${params}`);
+  const getLocationByParams = async (params, page) => {
+    const { name, type } = params;
+    const queryName = name === "" ? "" : `&name=${name}`;
+    const queryType = type === "All" ? "" : `&type=${type}`;
+
+    return await getResource(
+      `https://rickandmortyapi.com/api/location/?page=${page}${queryName}${queryType}`
+    );
+  };
 
   const getAllEpisodes = async (page) =>
     await getResource(`https://rickandmortyapi.com/api/episode?page=${page}`);
