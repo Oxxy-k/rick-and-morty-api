@@ -44,3 +44,8 @@ export const personSearchingParams = [
     key: 4,
   },
 ];
+
+export const episodeSearchingParams = [
+  { type: "season", id: 1, max: 3 },
+  { type: "episode", id: 2, max: 25 },
+];

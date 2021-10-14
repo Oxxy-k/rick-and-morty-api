@@ -13,6 +13,7 @@ const messages = {
   "episode.episode": "Episode:",
   "episode.date": "Date:",
   "episode.characters": "Characters",
+  "episode.season": 'Season:',
 
   "character.lastKnowLocation": "Last known location:",
   "character.gender": "Gender:",

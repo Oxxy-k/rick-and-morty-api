@@ -14,7 +14,7 @@ export default function Drawer({
   isOpen,
   onClose,
   children,
-  onUpdateListCharacter,
+  onUpdateListData,
 }) {
   return (
     <>
@@ -31,7 +31,7 @@ export default function Drawer({
             <Button size="md" onClick={onClose} messageId="button.cancel" />
             <Button
               onClick={() => {
-                onUpdateListCharacter();
+                onUpdateListData();
                 onClose();
               }}
               size="sm"

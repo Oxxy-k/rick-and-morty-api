@@ -79,7 +79,7 @@ function CharactersPage({ isOpen, onOpen, onClose }) {
         isOpen={isOpen}
         onOpen={onOpen}
         onClose={onClose}
-        onUpdateListCharacter={onUpdateListCharacter}
+        onUpdateListData={onUpdateListCharacter}
       >
         <Input
           onChange={(e) => updateParamsForSearching(e.target.value, "name")}
@@ -97,7 +97,7 @@ function CharactersPage({ isOpen, onOpen, onClose }) {
           >
             <Text messageId={`character.${type}`} />
             <Select
-              value={paramsForSearching?.[type]}
+              value={paramsForSearching[type]}
               onChange={(e) => updateParamsForSearching(e.target.value, type)}
               maxW="200px"
               size="xs"

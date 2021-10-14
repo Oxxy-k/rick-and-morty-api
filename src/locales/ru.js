@@ -13,6 +13,7 @@ const messages = {
   "episode.episode": "Серия:",
   "episode.date": "Дата:",
   "episode.characters": "Персонажи",
+  "episode.season": 'Сезон:',
 
   "character.lastKnowLocation": "Последняя локация:",
   "character.gender": "Пол:",
