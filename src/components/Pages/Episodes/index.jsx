@@ -92,6 +92,7 @@ function EpisodesPage({ isOpen, onOpen, onClose }) {
         onUpdateListData={onUpdateListEpisode}
       >
         <Input
+          value={paramsForSearching.name}
           onChange={(e) => updateParamsForSearching(e.target.value, "name")}
           focusBorderColor="rgb(0, 217, 255)"
           variant="flushed"

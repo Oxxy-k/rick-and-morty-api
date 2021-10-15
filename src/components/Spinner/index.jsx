@@ -3,7 +3,7 @@ import { Image, Flex } from "@chakra-ui/react";
 
 import "./Spinner.css";
 
-const Spinner = ({ props }) => {
+const Spinner = () => {
   return (
     <Flex alignItems="center" justifyContent="center" h="90vh">
       <Image

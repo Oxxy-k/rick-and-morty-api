@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { ApiContext } from "../../../contex/api";
 import {
   Box,
   Flex,
@@ -13,6 +12,7 @@ import {
   Grid,
   GridItem,
 } from "@chakra-ui/react";
+import { ApiContext } from "../../../contex/api";
 import Spinner from "../../Spinner";
 import Button from "../../shared/Button";
 import Text from "../../shared/Text";

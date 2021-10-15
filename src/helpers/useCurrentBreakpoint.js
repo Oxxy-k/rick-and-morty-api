@@ -7,7 +7,6 @@ const getCurrentBreakpoint = () => {
   });
 
   const selectBreakpoint = {
-    // isMobile
     isTablet: queries[1].matches,
     isDesktop: queries[2].matches,
   };
@@ -20,10 +19,6 @@ const useCurrentBreakpoint = () => {
     isTablet: false,
     isDesktop: false,
   });
-  console.log(
-    "🚀 ~ file: useCurrentBreakpoint.js ~ line 20 ~ useCurrentBreakpoint ~ currentBreakpoint",
-    currentBreakpoint
-  );
 
   useEffect(() => {
     setCurrentBreakpoint(getCurrentBreakpoint());

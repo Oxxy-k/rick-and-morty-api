@@ -26,12 +26,12 @@ function CharactersPage({ isOpen, onOpen, onClose }) {
   const [paramsForSearching, setParamsForSearching] = useState(
     initialParamsForSearching
   );
+  const [characters, setCharacters] = useState([]);
   const [currentCharacterId, setCurrentCharacterId] = useState();
   const [modalVisibility, toggleModalVisibility] = useState(false);
   const [isNextPageExist, setIsNextPageExist] = useState(true);
   const [isFirstLoading, setIsFirstLoading] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [characters, setCharacters] = useState([]);
   const [page, setPage] = useState(countOfFirstPage);
   const [isError, setIsError] = useState(false);
 
@@ -82,6 +82,7 @@ function CharactersPage({ isOpen, onOpen, onClose }) {
         onUpdateListData={onUpdateListCharacter}
       >
         <Input
+          value={paramsForSearching.name}
           onChange={(e) => updateParamsForSearching(e.target.value, "name")}
           focusBorderColor="rgb(0, 217, 255)"
           variant="flushed"

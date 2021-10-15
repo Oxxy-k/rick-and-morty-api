@@ -1,11 +1,11 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
+import { Flex } from "@chakra-ui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import IconButton from "../shared/IconButton";
-import { Flex } from "@chakra-ui/react";
+import { renderNavBarItems } from "../../constants/renderNavBarItems";
 import Text from "../shared/Text";
-import LocaleDropdown from "./LocaleDropdown";
 import Logo from "../Logo";
 
 const NavBar = ({ onOpen }) => {
@@ -14,15 +14,11 @@ const NavBar = ({ onOpen }) => {
       <Flex justifyContent="space-between" alignItems="center">
         <Logo />
         <Flex justifyContent="space-between" alignItems="center">
-          <Link to="/episodes">
-            <Text messageId="header.episodes" px="15px" />
-          </Link>
-          <Link to="/characters">
-            <Text messageId="header.characters" px="15px" />
-          </Link>
-          <Link to="/locations">
-            <Text messageId="header.locations" px="15px" />
-          </Link>
+          {renderNavBarItems.map(({ title, key }) => (
+            <Link to={`/${title}`} key={key}>
+              <Text messageId={`header.${title}`} px="15px" />
+            </Link>
+          ))}
           <IconButton
             icon={<FontAwesomeIcon icon={faSearch} color="gray" />}
             size="sm"
@@ -30,7 +26,6 @@ const NavBar = ({ onOpen }) => {
           />
         </Flex>
       </Flex>
-      <LocaleDropdown />
     </>
   );
 };

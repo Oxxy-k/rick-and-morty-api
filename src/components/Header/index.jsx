@@ -2,6 +2,7 @@ import React from "react";
 import { Flex } from "@chakra-ui/react";
 import NavBar from "./NavBar";
 import MobileNavBar from "./MobileNavBar";
+import LocaleDropdown from "./LocaleDropdown";
 import useCurrentBreakpoint from "../../helpers/useCurrentBreakpoint";
 
 const Header = ({ onOpen }) => {
@@ -21,6 +22,7 @@ const Header = ({ onOpen }) => {
         ) : (
           <MobileNavBar onOpen={onOpen} />
         )}
+        <LocaleDropdown />
       </Flex>
     </Flex>
   );

@@ -24,7 +24,7 @@ const Button = ({
     _focus={{ outline: "none" }}
     {...props}
   >
-    <Text messageId={messageId} color={textColor} />
+    <Text messageId={messageId} color={textColor} fontSize="14px" />
   </ChakraButton>
 );
 

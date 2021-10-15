@@ -1,7 +1,6 @@
 import React from "react";
-import Header from "../Header";
 import { Box } from "@chakra-ui/react";
-// import LeftPanel from 'components/LeftPanel'
+import Header from "../Header";
 
 export default function AppLayout({ children }) {
   return (

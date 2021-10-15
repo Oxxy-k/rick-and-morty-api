@@ -11,6 +11,11 @@ const generateColorStatus = (status) => {
   return colors[status.toLowerCase()];
 };
 
+const size = {
+  w: ["320px", "400px", "500px", "550px"],
+  h: ["max-content", "200px"],
+};
+
 const CharacterItem = ({
   name,
   status,
@@ -21,21 +26,7 @@ const CharacterItem = ({
   onClick,
 }) => {
   return (
-    <Flex
-      onClick={onClick}
-      cursor="pointer"
-      _hover={{
-        bgColor: "black",
-        boxShadow: "0 0 10px rgb(0, 217, 255)",
-      }}
-      p="20px"
-      w={["320px", "400px", "500px", "550px"]}
-      h={["max-content", "200px"]}
-      borderRadius="12px"
-      backgroundColor="rgba(0, 0, 0, 0.9)"
-      boxShadow="dark-lg"
-      alignItems="center"
-    >
+    <Flex onClick={onClick} className="content-item-wrapper" {...size}>
       <Image src={image} h={["100px", "160px"]} />
       <Box pl="10px" textAlign="left">
         <Text fontSize="20px" color="white">
@@ -57,7 +48,7 @@ const CharacterItem = ({
           </Text>
         </Flex>
         <Text messageId="character.lastKnowLocation" mt="5px" />
-        <Text color="white">{location}</Text>
+        <Text color="white">{toUpperCaseFirst(location)}</Text>
       </Box>
     </Flex>
   );

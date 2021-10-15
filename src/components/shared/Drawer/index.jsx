@@ -28,13 +28,12 @@ export default function Drawer({
           <DrawerBody color="white">{children}</DrawerBody>
 
           <DrawerFooter>
-            <Button size="md" onClick={onClose} messageId="button.cancel" />
+            <Button onClick={onClose} messageId="button.cancel" />
             <Button
               onClick={() => {
                 onUpdateListData();
                 onClose();
               }}
-              size="sm"
               backgroundColor="rgb(0, 217, 255)"
               textColor="black"
               variant="ghost"

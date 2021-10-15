@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { ApiContext } from "../../../contex/api";
 import {
   Box,
   Flex,
@@ -11,6 +10,7 @@ import {
   ModalFooter,
   ModalBody,
 } from "@chakra-ui/react";
+import { ApiContext } from "../../../contex/api";
 import Spinner from "../../Spinner";
 import Button from "../../shared/Button";
 import Text from "../../shared/Text";
@@ -52,12 +52,12 @@ const ModalCharacterInfo = ({ onClose, isOpen, characterId }) => {
     (async () => {
       setIsLoading(true);
       const characterInfo = await getCharacterById(characterId);
-      const firstCharacterEpisodeId = characterInfo.episode[0].replace(
+      const firstCharactersEpisodeId = characterInfo.episode[0].replace(
         queryEpisodes,
         ""
       );
       const firstCharacterEpisode = await getEpisodeById(
-        firstCharacterEpisodeId
+        firstCharactersEpisodeId
       );
       setFirstCharacterEpisode(firstCharacterEpisode);
       setCharacterInfo(characterInfo);
