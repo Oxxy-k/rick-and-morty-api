@@ -9,6 +9,7 @@ import Spinner from "../../Spinner";
 import ModalCharacterInfo from "./ModalCharacterInfo";
 import Drawer from "../../shared/Drawer";
 import Text from "../../shared/Text";
+import ErrorBoundary from "../../ErrorBounadry";
 
 const initialParamsForSearching = {
   name: "",
@@ -72,6 +73,10 @@ function CharactersPage({ isOpen, onOpen, onClose }) {
       setIsFirstLoading(false);
     })();
   }, [page]);
+
+  if (isError) {
+    return <ErrorBoundary />;
+  }
 
   return (
     <>

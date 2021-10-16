@@ -4,7 +4,7 @@ export const ApiContext = React.createContext();
 
 export function ApiProvider({ children }) {
   const getResource = async (url) => {
-    const data = await fetch(url);
+    const data = await fetch(`https://rickandmortyapi.com/api/${url}`);
     if (!data.ok) {
       throw new Error(`Could not fetch ${url}, recieved ${data.status}`);
     }
@@ -13,46 +13,45 @@ export function ApiProvider({ children }) {
   };
 
   const getAllCharacter = async (page) =>
-    await getResource(
-      `https://rickandmortyapi.com/api/character/?page=${page}`
-    );
+    await getResource(`character/?page=${page}`);
 
-  const getCharacterById = async (id) =>
-    await getResource(`https://rickandmortyapi.com/api/character/${id}`);
+  const getCharacterById = async (id) => await getResource(`character/${id}`);
 
   const getCharacterByParams = async (params, page) => {
-    let { name, status, species, type, gender } = params;
-    name = name === "" ? "" : `&name=${name}`;
-    status = status === "All" ? "" : `&status=${status}`;
-    species = species === "All" ? "" : `&species=${species}`;
-    type = type === "All" ? "" : `&type=${type}`;
-    gender = gender === "All" ? "" : `&gender=${gender}`;
-    return await getResource(
-      `https://rickandmortyapi.com/api/character/?page=${page}${name}${status}${species}${type}${gender}  `
-    );
+    const inititalUrlRequest = "character/?";
+    const inititalSearchParams = `page=${page}`;
+    const searchParams = new URLSearchParams(inititalSearchParams);
+    for (let key in params) {
+      if (params[key] && params[key] !== "All") {
+        searchParams.set(key, params[key]);
+      }
+    }
+
+    return await getResource(inititalUrlRequest + searchParams.toString());
   };
 
   const getAllLocations = async (page) =>
-    await getResource(`https://rickandmortyapi.com/api/location/?page=${page}`);
+    await getResource(`location/?page=${page}`);
 
-  const getLocationById = async (id) =>
-    await getResource(`https://rickandmortyapi.com/api/location/${id}`);
+  const getLocationById = async (id) => await getResource(`location/${id}`);
 
   const getLocationByParams = async (params, page) => {
-    const { name, type } = params;
-    const queryName = name === "" ? "" : `&name=${name}`;
-    const queryType = type === "All" ? "" : `&type=${type}`;
+    const inititalUrlRequest = "location/?";
+    const inititalSearchParams = `page=${page}`;
+    const searchParams = new URLSearchParams(inititalSearchParams);
+    for (let key in params) {
+      if (params[key] && params[key] !== "All") {
+        searchParams.set(key, params[key]);
+      }
+    }
 
-    return await getResource(
-      `https://rickandmortyapi.com/api/location/?page=${page}${queryName}${queryType}`
-    );
+    return await getResource(inititalUrlRequest + searchParams.toString());
   };
 
   const getAllEpisodes = async (page) =>
-    await getResource(`https://rickandmortyapi.com/api/episode?page=${page}`);
+    await getResource(`episode?page=${page}`);
 
-  const getEpisodeById = async (id) =>
-    await getResource(`https://rickandmortyapi.com/api/episode/${id}`);
+  const getEpisodeById = async (id) => await getResource(`episode/${id}`);
 
   const getEpisodeByParams = async (params, page) => {
     const { season, episode, name } = params;
@@ -62,7 +61,7 @@ export function ApiProvider({ children }) {
         : "";
     const queryName = name ? `&name=${name}` : "";
     return await getResource(
-      `https://rickandmortyapi.com/api/episode/?page=${page}${queryEpisode}${queryName}`
+      `episode/?page=${page}${queryEpisode}${queryName}`
     );
   };
 

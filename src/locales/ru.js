@@ -32,6 +32,8 @@ const messages = {
   "button.close": "Закрыть",
   "button.cancel": "Отмена",
   "button.search": "Поиск",
+
+  'error.message': 'Эмм... Блин... Рик, кажется я что-то сломал'
 };
 
 export default messages;

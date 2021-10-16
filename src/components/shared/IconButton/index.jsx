@@ -6,7 +6,7 @@ const IconButton = ({ icon, onClick, size, variant, color, ...props }) => {
   return (
     <Button
       borderRadius="12px"
-      fontSize="20px"
+      fontSize="15px"
       p="0"
       minW="5px"
       minH="5px"
