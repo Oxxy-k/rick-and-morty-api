@@ -46,7 +46,7 @@ export const personSearchingParams = [
 ];
 
 export const episodeSearchingParams = [
-  { type: "season", id: 1, max: 3 },
+  { type: "season", id: 1, max: 5 },
   { type: "episode", id: 2, max: 25 },
 ];
 

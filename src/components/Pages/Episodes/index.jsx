@@ -20,6 +20,7 @@ import Button from "../../shared/Button";
 import Spinner from "../../Spinner";
 import Drawer from "../../shared/Drawer";
 import Text from "../../shared/Text";
+import ErrorBoundary from "../../ErrorBounadry";
 
 const countOfFirstPage = 1;
 
@@ -50,12 +51,20 @@ function EpisodesPage({ isOpen, onOpen, onClose }) {
   };
 
   const onUpdateListEpisode = async () => {
+    if (isError) {
+      setIsError(false);
+    }
     setIsLoading(true);
     setPage(countOfFirstPage);
-    const data = await getEpisodeByParams(paramsForSearching, page);
-    setIsNextPageExist(!!data.info.next);
-    setEpisodes(data.results);
-    setIsLoading(false);
+    try {
+      const data = await getEpisodeByParams(paramsForSearching, page);
+      setIsNextPageExist(!!data.info.next);
+      setEpisodes(data.results);
+      setIsLoading(false);
+    } catch {
+      setIsError(true);
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -82,6 +91,10 @@ function EpisodesPage({ isOpen, onOpen, onClose }) {
       setIsFirstLoading(false);
     })();
   }, [page]);
+
+  if (isError) {
+    return <ErrorBoundary />;
+  }
 
   return (
     <>

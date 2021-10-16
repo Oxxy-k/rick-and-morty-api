@@ -13,7 +13,7 @@ const messages = {
   "episode.episode": "Episode:",
   "episode.date": "Date:",
   "episode.characters": "Characters",
-  "episode.season": 'Season:',
+  "episode.season": "Season:",
 
   "character.lastKnowLocation": "Last known location:",
   "character.gender": "Gender:",
@@ -32,6 +32,7 @@ const messages = {
   "button.close": "Close",
   "button.cancel": "Cancel",
   "button.search": "Search",
+  "error.message": "Um... Damn... Rick, it seems something is wrong...",
 };
 
 export default messages;

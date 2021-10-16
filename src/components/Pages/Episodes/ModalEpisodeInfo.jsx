@@ -18,6 +18,7 @@ import Button from "../../shared/Button";
 import Text from "../../shared/Text";
 import { queryCharacters } from "../../../constants/queryStringsForApi";
 import { toUpperCaseFirst } from "../../../helpers/toUpperCaseFirst";
+import ErrorBoundary from "../../ErrorBounadry";
 
 const FlexTextItem = ({ content, messageId }) => {
   return (
@@ -35,6 +36,7 @@ const ModalEpisodeInfo = ({ onClose, isOpen, episodeId }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [episodeInfo, setEpisodeInfo] = useState({});
   const [episodeCharacters, setEpisodeCharacters] = useState([]);
+  const [isError, setIsError] = useState(false);
 
   const { name, air_date: date, episode } = episodeInfo;
 
@@ -46,15 +48,23 @@ const ModalEpisodeInfo = ({ onClose, isOpen, episodeId }) => {
   useEffect(() => {
     if (!episodeId) return;
     (async () => {
+      if (isError) {
+        setIsError(false);
+      }
       setIsLoading(true);
-      const episodeInfo = await getEpisodeById(episodeId);
-      const episodeCharactersId = episodeInfo.characters.map((item) =>
-        item.replace(queryCharacters, "")
-      );
-      const episodeCharacters = await getCharacterById(episodeCharactersId);
-      setEpisodeCharacters(episodeCharacters);
-      setEpisodeInfo(episodeInfo);
-      setIsLoading(false);
+      try {
+        const episodeInfo = await getEpisodeById(episodeId);
+        const episodeCharactersId = episodeInfo.characters.map((item) =>
+          item.replace(queryCharacters, "")
+        );
+        const episodeCharacters = await getCharacterById(episodeCharactersId);
+        setEpisodeCharacters(episodeCharacters);
+        setEpisodeInfo(episodeInfo);
+        setIsLoading(false);
+      } catch {
+        setIsError(true);
+        setIsLoading(false);
+      }
     })();
   }, [episodeId]);
 
@@ -70,6 +80,8 @@ const ModalEpisodeInfo = ({ onClose, isOpen, episodeId }) => {
       <ModalContent backgroundColor="black">
         {isLoading ? (
           <Spinner />
+        ) : isError ? (
+          <ErrorBoundary />
         ) : (
           <>
             <ModalHeader>

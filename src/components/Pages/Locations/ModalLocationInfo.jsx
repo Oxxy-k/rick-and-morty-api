@@ -18,6 +18,7 @@ import Button from "../../shared/Button";
 import Text from "../../shared/Text";
 import { queryCharacters } from "../../../constants/queryStringsForApi";
 import { toUpperCaseFirst } from "../../../helpers/toUpperCaseFirst";
+import ErrorBoundary from "../../ErrorBounadry";
 
 const FlexTextItem = ({ content, messageId }) => {
   return (
@@ -35,6 +36,7 @@ const ModalLocationInfo = ({ onClose, isOpen, locationId }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [locationInfo, setLocationInfo] = useState({});
   const [residents, setResidents] = useState([]);
+  const [isError, setIsError] = useState(false);
 
   const { name, type, dimension } = locationInfo;
 
@@ -46,21 +48,29 @@ const ModalLocationInfo = ({ onClose, isOpen, locationId }) => {
   useEffect(() => {
     if (!locationId) return;
     (async () => {
-      setIsLoading(true);
-      const locationInfo = await getLocationById(locationId);
-      const residentsId = locationInfo.residents.map((item) =>
-        item.replace(queryCharacters, "")
-      );
-      if (residentsId.length) {
-        const residents = await getCharacterById(residentsId);
-        Array.isArray(residents)
-          ? setResidents(residents)
-          : setResidents([residents]);
-      } else {
-        setResidents([]);
+      if (isError) {
+        setIsError(false);
       }
-      setLocationInfo(locationInfo);
-      setIsLoading(false);
+      setIsLoading(true);
+      try {
+        const locationInfo = await getLocationById(locationId);
+        const residentsId = locationInfo.residents.map((item) =>
+          item.replace(queryCharacters, "")
+        );
+        if (residentsId.length) {
+          const residents = await getCharacterById(residentsId);
+          Array.isArray(residents)
+            ? setResidents(residents)
+            : setResidents([residents]);
+        } else {
+          setResidents([]);
+        }
+        setIsLoading(false);
+        setLocationInfo(locationInfo);
+      } catch {
+        setIsError(true);
+        setIsLoading(false);
+      }
     })();
   }, [locationId]);
 
@@ -76,6 +86,8 @@ const ModalLocationInfo = ({ onClose, isOpen, locationId }) => {
       <ModalContent backgroundColor="black">
         {isLoading ? (
           <Spinner />
+        ) : isError ? (
+          <ErrorBoundary />
         ) : (
           <>
             <ModalHeader>

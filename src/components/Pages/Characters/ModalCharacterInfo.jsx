@@ -16,6 +16,7 @@ import Button from "../../shared/Button";
 import Text from "../../shared/Text";
 import { queryEpisodes } from "../../../constants/queryStringsForApi";
 import { toUpperCaseFirst } from "../../../helpers/toUpperCaseFirst";
+import ErrorBoundary from "../../ErrorBounadry";
 
 const FlexTextItem = ({ content, messageId }) => {
   return (
@@ -33,6 +34,7 @@ const ModalCharacterInfo = ({ onClose, isOpen, characterId }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [characterInfo, setCharacterInfo] = useState({});
   const [firstCharacterEpisode, setFirstCharacterEpisode] = useState({});
+  const [isError, setIsError] = useState(false);
 
   const { name, status, species, type, gender, origin, location, image } =
     characterInfo;
@@ -50,18 +52,26 @@ const ModalCharacterInfo = ({ onClose, isOpen, characterId }) => {
   useEffect(() => {
     if (!characterId) return;
     (async () => {
+      if (isError) {
+        setIsError(false);
+      }
       setIsLoading(true);
-      const characterInfo = await getCharacterById(characterId);
-      const firstCharactersEpisodeId = characterInfo.episode[0].replace(
-        queryEpisodes,
-        ""
-      );
-      const firstCharacterEpisode = await getEpisodeById(
-        firstCharactersEpisodeId
-      );
-      setFirstCharacterEpisode(firstCharacterEpisode);
-      setCharacterInfo(characterInfo);
-      setIsLoading(false);
+      try {
+        const characterInfo = await getCharacterById(characterId);
+        const firstCharactersEpisodeId = characterInfo.episode[0].replace(
+          queryEpisodes,
+          ""
+        );
+        const firstCharacterEpisode = await getEpisodeById(
+          firstCharactersEpisodeId
+        );
+        setFirstCharacterEpisode(firstCharacterEpisode);
+        setCharacterInfo(characterInfo);
+        setIsLoading(false);
+      } catch {
+        setIsError(true);
+        setIsLoading(false);
+      }
     })();
   }, [characterId]);
 
@@ -78,6 +88,8 @@ const ModalCharacterInfo = ({ onClose, isOpen, characterId }) => {
       <ModalContent backgroundColor="black">
         {isLoading ? (
           <Spinner />
+        ) : isError ? (
+          <ErrorBoundary />
         ) : (
           <>
             <ModalHeader>

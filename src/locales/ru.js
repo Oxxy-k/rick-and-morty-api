@@ -33,7 +33,7 @@ const messages = {
   "button.cancel": "Отмена",
   "button.search": "Поиск",
 
-  'error.message': 'Эмм... Блин... Рик, кажется я что-то сломал'
+  'error.message': 'Эмм... Блин... Рик, кажется что-то не так...'
 };
 
 export default messages;

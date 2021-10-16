@@ -7,7 +7,10 @@ const ErrorBoundary = () => {
     <Flex alignItems="center" justifyContent="center" h="90vh">
       <Box>
         <Flex justifyContent="center">
-          <Image src="https://upload.wikimedia.org/wikipedia/ru/c/c3/Morty_Smith.png" />
+          <Image
+            src="https://upload.wikimedia.org/wikipedia/ru/c/c3/Morty_Smith.png"
+            h="300px"
+          />
         </Flex>
         <Text messageId="error.message" color="white" fontSize="24px" />
       </Box>

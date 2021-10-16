@@ -9,6 +9,7 @@ import Spinner from "../../Spinner";
 import ModalLocationInfo from "./ModalLocationInfo";
 import Drawer from "../../shared/Drawer";
 import Text from "../../shared/Text";
+import ErrorBoundary from "../../ErrorBounadry";
 
 const countOfFirstPage = 1;
 
@@ -37,12 +38,20 @@ function LocationPage({ isOpen, onClose, onOpen }) {
   };
 
   const onUpdateLocationCharacter = async () => {
+    if (isError) {
+      setIsError(false);
+    }
     setIsLoading(true);
-    setPage(countOfFirstPage);
-    const data = await getLocationByParams(paramsForSearching, page);
-    setIsNextPageExist(!!data.info.next);
-    setLocations(data.results);
-    setIsLoading(false);
+    setPage(countOfFirstPage);    
+    try {
+      const data = await getLocationByParams(paramsForSearching, page);
+      setIsNextPageExist(!!data.info.next);
+      setLocations(data.results);
+      setIsLoading(false);
+    } catch {
+      setIsError(true);
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -69,6 +78,10 @@ function LocationPage({ isOpen, onClose, onOpen }) {
       setIsFirstLoading(false);
     })();
   }, [page]);
+
+  if (isError) {
+    return <ErrorBoundary />;
+  }
 
   return (
     <>

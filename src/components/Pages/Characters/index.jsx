@@ -41,12 +41,20 @@ function CharactersPage({ isOpen, onOpen, onClose }) {
   };
 
   const onUpdateListCharacter = async () => {
+    if (isError) {
+      setIsError(false);
+    }
     setIsLoading(true);
     setPage(countOfFirstPage);
-    const data = await getCharacterByParams(paramsForSearching, page);
-    setIsNextPageExist(!!data.info.next);
-    setCharacters(data.results);
-    setIsLoading(false);
+    try {
+      const data = await getCharacterByParams(paramsForSearching, page);
+      setIsNextPageExist(!!data.info.next);
+      setCharacters(data.results);
+      setIsLoading(false);
+    } catch {
+      setIsError(true);
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -63,7 +71,7 @@ function CharactersPage({ isOpen, onOpen, onClose }) {
         setIsNextPageExist(!!data.info.next);
         setCharacters([...characters, ...data.results]);
         setIsLoading(false);
-      } catch (error) {
+      } catch {
         setIsError(true);
         setIsLoading(false);
       }
