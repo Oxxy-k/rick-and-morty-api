@@ -6,7 +6,7 @@ const EpisodesItem = ({ name, episode, date, onClick }) => {
   return (
     <Box
       onClick={onClick}
-      w={["250px", "200px", "300px", "400px"]}
+      w={["300px", "300px", "300px", "500px"]}
       className="content-item-wrapper"
       textAlign="left"
     >

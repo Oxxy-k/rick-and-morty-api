@@ -17,19 +17,25 @@ import Text from "../../shared/Text";
 import { queryEpisodes } from "../../../constants/queryStringsForApi";
 import { toUpperCaseFirst } from "../../../helpers/toUpperCaseFirst";
 import ErrorBoundary from "../../ErrorBounadry";
+import useCurrentBreakpoint from "../../../helpers/useCurrentBreakpoint";
 
-const FlexTextItem = ({ content, messageId }) => {
+const FlexTextItem = ({ content, messageId, isTablet }) => {
   return (
-    <Flex>
-      <Text messageId={`character.${messageId}`} fontSize="18px" minW="200px" />
+    <Box display={isTablet ? "flex" : "block"}>
+      <Text
+        messageId={`character.${messageId}`}
+        fontSize="18px"
+        minW={isTablet ? "200px" : "content-width"}
+      />
       <Text color="white" fontSize="18px">
         {toUpperCaseFirst(content)}
       </Text>
-    </Flex>
+    </Box>
   );
 };
 
 const ModalCharacterInfo = ({ onClose, isOpen, characterId }) => {
+  const { isTablet } = useCurrentBreakpoint();
   const { getCharacterById, getEpisodeById } = useContext(ApiContext);
   const [isLoading, setIsLoading] = useState(false);
   const [characterInfo, setCharacterInfo] = useState({});
@@ -98,13 +104,14 @@ const ModalCharacterInfo = ({ onClose, isOpen, characterId }) => {
               </Text>
             </ModalHeader>
             <ModalBody>
-              <Flex>
+              <Box display={isTablet ? "flex" : "block"}>
                 <Image src={image} h="200px" />
-                <Box ml="20px">
+                <Box ml={isTablet ? "20px" : "0px"}>
                   {content.map(
                     ({ content, messageId, key }) =>
                       content && (
                         <FlexTextItem
+                          isTablet={isTablet}
                           content={content}
                           messageId={messageId}
                           key={key}
@@ -112,7 +119,7 @@ const ModalCharacterInfo = ({ onClose, isOpen, characterId }) => {
                       )
                   )}
                 </Box>
-              </Flex>
+              </Box>
             </ModalBody>
             <ModalFooter>
               <Button onClick={onClose} messageId="button.close" />

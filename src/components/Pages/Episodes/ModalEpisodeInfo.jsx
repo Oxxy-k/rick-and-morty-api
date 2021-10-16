@@ -103,7 +103,11 @@ const ModalEpisodeInfo = ({ onClose, isOpen, episodeId }) => {
                 )}
               </Box>
               <Text messageId="episode.characters" mt="5px" fontSize="24px" />
-              <Grid templateColumns="repeat(4, 2fr)" gap={5} mt="5px">
+              <Grid
+                templateColumns={["repeat(3, 2fr)", "repeat(4, 2fr)"]}
+                gap={5}
+                mt="5px"
+              >
                 {episodeCharacters.map(({ name, image, id }) => (
                   <GridItem key={id}>
                     <Box>

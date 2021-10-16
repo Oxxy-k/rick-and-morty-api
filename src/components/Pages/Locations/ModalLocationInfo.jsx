@@ -110,7 +110,11 @@ const ModalLocationInfo = ({ onClose, isOpen, locationId }) => {
               </Box>
               <Text messageId="location.residents" mt="5px" fontSize="24px" />
               {residents.length && (
-                <Grid templateColumns="repeat(4, 2fr)" gap={5} mt="5px">
+                <Grid
+                  templateColumns={["repeat(3, 2fr)", "repeat(4, 2fr)"]}
+                  gap={5}
+                  mt="5px"
+                >
                   {residents.map(({ name, image, id }) => (
                     <GridItem key={id}>
                       <Box>
