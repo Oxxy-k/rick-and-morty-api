@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import {
   Box,
-  Flex,
   Image,
   Modal,
   ModalOverlay,
