@@ -42,7 +42,7 @@ function LocationPage({ isOpen, onClose, onOpen }) {
       setIsError(false);
     }
     setIsLoading(true);
-    setPage(countOfFirstPage);    
+    setPage(countOfFirstPage);
     try {
       const data = await getLocationByParams(paramsForSearching, page);
       setIsNextPageExist(!!data.info.next);
@@ -109,7 +109,14 @@ function LocationPage({ isOpen, onClose, onOpen }) {
             borderRadius="12px"
           >
             {locationSearchingParams.map(({ type, id }) => (
-              <option key={id}>{type}</option>
+              <option
+                key={id}
+                style={{
+                  backgroundColor: "black",
+                }}
+              >
+                {type}
+              </option>
             ))}
           </Select>
         </Flex>

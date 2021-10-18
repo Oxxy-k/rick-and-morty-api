@@ -20,6 +20,7 @@ const Button = ({
     _hover={{
       bgColor: "none",
       boxShadow: "0 0 10px rgb(0, 217, 255)",
+      transition: "all 0.4s",
     }}
     _focus={{ outline: "none" }}
     {...props}

@@ -5,7 +5,7 @@ import { Button } from "@chakra-ui/react";
 const IconButton = ({ icon, onClick, size, variant, color, ...props }) => {
   return (
     <Button
-      borderRadius="12px"
+      borderRadius="0px"
       fontSize="15px"
       p="0"
       minW="5px"

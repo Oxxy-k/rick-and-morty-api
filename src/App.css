@@ -16,6 +16,7 @@
 }
 
 .content-item-wrapper {
+  transition: all 0.4s;
   cursor: pointer;
   padding: 20px;
   border-radius: 12px;
@@ -27,4 +28,8 @@
 .content-item-wrapper:hover {
   background-color: rgba(0, 0, 0);
   box-shadow: 0 0 10px rgb(0, 217, 255);
+}
+
+.navbar-item:hover {
+  border-bottom: solid 2px rgb(0, 217, 255);
 }

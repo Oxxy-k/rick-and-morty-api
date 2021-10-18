@@ -23,9 +23,16 @@ const LocaleDropdown = () => {
       cursor="pointer"
       size="lg"
       color="gray"
+      height="40px"
     >
       {locales.map((item) => (
-        <option key={item} value={item}>
+        <option
+          key={item}
+          value={item}
+          style={{
+            backgroundColor: "black",
+          }}
+        >
           {intl.formatMessage({ id: `languages.${item}` })}
         </option>
       ))}

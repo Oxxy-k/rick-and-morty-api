@@ -11,18 +11,23 @@ import Logo from "../Logo";
 const NavBar = ({ onOpen }) => {
   return (
     <>
-      <Flex justifyContent="space-between" alignItems="center">
+      <Flex justifyContent="space-between" alignItems="center" h="40px">
         <Logo />
         <Flex justifyContent="space-between" alignItems="center">
           {renderNavBarItems.map(({ title, key }) => (
             <Link to={`/${title}`} key={key}>
-              <Text messageId={`header.${title}`} px="15px" />
+              <Text
+                messageId={`header.${title}`}
+                px="15px"
+                className="navbar-item"
+              />
             </Link>
           ))}
           <IconButton
             icon={<FontAwesomeIcon icon={faSearch} color="gray" />}
             size="sm"
             onClick={onOpen}
+            className="navbar-item"
           />
         </Flex>
       </Flex>
