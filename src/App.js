@@ -17,6 +17,7 @@ function App() {
       <Header onOpen={onOpen} />
       <div className="container">
         <Switch>
+          <Route exact path="/" render={() => <HomePage />} />
           <Route
             exact
             path="/episodes"
@@ -33,7 +34,6 @@ function App() {
             render={() => <LocationsPage isOpen={isOpen} onClose={onClose} />}
           />
         </Switch>
-        <HomePage />
       </div>
     </div>
   );

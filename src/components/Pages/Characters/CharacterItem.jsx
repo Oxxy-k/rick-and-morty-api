@@ -11,7 +11,7 @@ const generateColorStatus = (status) => {
   return colors[status.toLowerCase()];
 };
 
-const dafaultSize = {
+const size = {
   w: ["320px", "400px", "500px", "550px"],
   h: ["max-content", "200px"],
 };
@@ -23,11 +23,16 @@ const CharacterItem = ({
   gender,
   location,
   image,
-  size = dafaultSize,
   onClick,
+  ...props
 }) => {
   return (
-    <Flex onClick={onClick} className="content-item-wrapper" {...size}>
+    <Flex
+      onClick={onClick}
+      className="content-item-wrapper"
+      {...size}
+      {...props}
+    >
       <Image src={image} h={["100px", "160px"]} />
       <Box pl="10px" textAlign="left">
         <Text fontSize="20px" color="white">

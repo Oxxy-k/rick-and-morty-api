@@ -6,8 +6,10 @@ import ModalCharacterInfo from "../Characters/ModalCharacterInfo";
 import Text from "../../shared/Text";
 import ErrorBoundary from "../../ErrorBounadry";
 import Spinner from "../../Spinner";
+import useCurrentBreakpoint from "../../../helpers/useCurrentBreakpoint";
 
 const HomePage = () => {
+  const { isTablet } = useCurrentBreakpoint();
   const { getCharacterById, getAllCharacter } = useContext(ApiContext);
   const [countOfAllCharacters, setCountOfAllCharacters] = useState(null);
   const [character, setCharacter] = useState({});
@@ -50,15 +52,17 @@ const HomePage = () => {
 
   return (
     <Box position="relative" w="90%" m="0 auto">
-      <Flex
+      <Box
+        d={isTablet ? "flex" : "block"}
         justifyContent="space-between"
         alignItems="center"
         alignContent="center"
       >
         <Image
+          m="0 auto"
           pb="10px"
           src="https://i1.wp.com/placebo.lu/wp-content/uploads/2020/03/rick-and-morty-portal-headshop.png?fit=500%2C500&ssl=1"
-          height="400px"
+          height={["250px", "350px", "350px", "350px"]}
         />
         {isLoading ? (
           <Spinner />
@@ -67,6 +71,7 @@ const HomePage = () => {
         ) : (
           character?.name && (
             <CharacterItem
+              m={"0 auto"}
               name={character.name}
               status={character.status}
               species={character.species}
@@ -80,9 +85,19 @@ const HomePage = () => {
             />
           )
         )}
-      </Flex>
-      <Box backgroundColor="rgba(0, 0, 0, 0.9)" borderRadius="12px" p="20px">
-        <Text messageId="rickAndMorty.main" color="white" fontSize="24px" />
+      </Box>
+      <Box
+        backgroundColor="rgba(0, 0, 0, 0.9)"
+        borderRadius="12px"
+        p="20px"
+        minW="320px"
+        mt="5px"
+      >
+        <Text
+          messageId="rickAndMorty.main"
+          color="white"
+          fontSize={["16px", "22px", "22px", "22px"]}
+        />
       </Box>
       <ModalCharacterInfo
         characterId={currentCharacterId}
