@@ -11,7 +11,7 @@ const generateColorStatus = (status) => {
   return colors[status.toLowerCase()];
 };
 
-const size = {
+const dafaultSize = {
   w: ["320px", "400px", "500px", "550px"],
   h: ["max-content", "200px"],
 };
@@ -23,6 +23,7 @@ const CharacterItem = ({
   gender,
   location,
   image,
+  size = dafaultSize,
   onClick,
 }) => {
   return (

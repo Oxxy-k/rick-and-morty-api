@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import LocationsPage from "./components/Pages/Locations";
 import CharactersPage from "./components/Pages/Characters";
 import EpisodesPage from "./components/Pages/Episodes";
+import HomePage from "./components/Pages/Home";
 import { Switch, Route } from "react-router-dom";
 
 import "./App.css";
@@ -32,6 +33,7 @@ function App() {
             render={() => <LocationsPage isOpen={isOpen} onClose={onClose} />}
           />
         </Switch>
+        <HomePage />
       </div>
     </div>
   );

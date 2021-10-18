@@ -15,6 +15,7 @@ const Header = ({ onOpen }) => {
       backgroundColor="black"
       height="40px"
       alignItems="center"
+      zIndex="1"
     >
       <Flex alignItems="center" justifyContent="space-between" px="5%" w="100%">
         {isTablet ? (
