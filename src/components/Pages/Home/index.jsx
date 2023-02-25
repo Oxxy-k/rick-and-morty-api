@@ -61,7 +61,7 @@ const HomePage = () => {
         <Image
           m="0 auto"
           pb="10px"
-          src="https://i1.wp.com/placebo.lu/wp-content/uploads/2020/03/rick-and-morty-portal-headshop.png?fit=500%2C500&ssl=1"
+          src="https://www.freepnglogos.com/uploads/rick-and-morty-png/rick-and-morty-portal-shoes-white-clothing-zavvi-23.png"
           height={["250px", "350px", "350px", "350px"]}
         />
         {isLoading ? (
